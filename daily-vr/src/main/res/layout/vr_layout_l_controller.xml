@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/player_control_bar"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:background="#b2000000"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/player_play_pause"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="center"
+            android:button="@null"
+            android:background="@drawable/vr_video_toolbar_tb_play"
+             />
+        <RelativeLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent">
+            <SeekBar
+                android:id="@+id/player_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:indeterminateOnly="false"
+                android:max="1000"
+                android:splitTrack="false"
+                android:maxHeight="1dp"
+                android:minHeight="1dp"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:progressDrawable="@drawable/module_player_seek_bar_drawable"
+                android:thumb="@drawable/module_player_seek_bar_thumb" />
+            <LinearLayout
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/player_position"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="--:--"
+                    android:textColor="#ffffff"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" / "
+                    android:textColor="#878686"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/player_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="--:--"
+                    android:textColor="#878686"
+                    android:textSize="11sp" />
+
+            </LinearLayout>
+        </RelativeLayout>
+        <CheckBox
+            android:id="@+id/player_gyroscope"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="center"
+            android:button="@null"
+            android:background="@drawable/vr_video_toolbar_tb_play"
+            />
+
+        <CheckBox
+            android:id="@+id/player_double"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="center"
+            android:button="@null"
+            android:background="@drawable/vr_video_toolbar_tb_play"
+            />
+
+
+
+        <ImageView
+            android:id="@+id/player_full_screen"
+            android:layout_width="34dp"
+            android:layout_height="match_parent"
+            android:scaleType="center"
+            android:src="@mipmap/module_player_controls_retract" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/player_ic_volume"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_gravity="top|right"
+        android:layout_marginRight="7dp"
+        android:scaleType="center"
+        android:src="@mipmap/module_player_controls_ic_volume" />
+
+    <ProgressBar
+        android:id="@+id/player_bottom_progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:indeterminateOnly="false"
+        android:max="1000"
+        android:maxHeight="1dp"
+        android:minHeight="1dp"
+        android:progressDrawable="@drawable/module_player_progress_bar_drawable" />
+
+    <ProgressBar
+        android:id="@+id/player_buffer_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/module_player_buffer_progress"
+        android:indeterminateDuration="2000"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:visibility="gone" />
+
+    <!--播放失败-->
+    <ViewStub
+        android:id="@+id/player_stub_play_error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!--移动网络提醒-->
+    <ViewStub
+        android:id="@+id/player_stub_mobile_network"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

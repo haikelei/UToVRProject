@@ -1,0 +1,617 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/5cf83eddf4f091eb49483e16e27812b514e792ea/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_8ebad4581e84889bd9d0869a7bfc4d0b2dd13a6f.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="890181e2a4fab6727b8e5c33aed1cf29224e33da">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/cn.daily.android-core-library-5.2.1.9-SNAPSHOT_54be61cd85d7189ae1bc0ea94a20116e8f57641d/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_net.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9a2fc3d30ce3cb03014a373b1d5c8b5795334271">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/umeng_social_net_51f6c54116117488ba6cca7fbf85e4a5b0c86750.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/daily-vr/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1953bd8e3ee1244312e3fb1f5baf46a4ac483d76">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_85704c8f2b2aa2fc2abdc7edcd206fa95b2cc009.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/686592b28a5b86cf57dea7b24f3c9a3a3382a82c/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4119ea97a7191ff9b8f33b534ea220448f62f491">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_061c76363e9a600acd31bb4fb4b7234cfd953d22.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/okio-1.13.0_922c3be791bc640a55e62d766fe36ff81b387de7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/04b76c8ebe0836ea8a2c8f5e653f042dea494bc0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="57435e96f7f45c3dd1f89d46ef94e8d7f82ea3c2">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_33cebe51467f2c6571987c67b2ee818bb2014c46.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/984f6bd4fa0a50083c973a87aabbea7f4883e79f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_d8f0c824bfe919b492cdf25fe92c5cde46d20383.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_net.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9a2fc3d30ce3cb03014a373b1d5c8b5795334271">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/umeng_social_net_51f6c54116117488ba6cca7fbf85e4a5b0c86750/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/daily-vr/build/intermediates/bundles/default/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e3fda9578bce1e4196d206f175a48c6f9821009d">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/4/classes_85704c8f2b2aa2fc2abdc7edcd206fa95b2cc009/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/2.0.1/516c03b21d50a644d538de0f0369c620989cd8f0/jsr305-2.0.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="516c03b21d50a644d538de0f0369c620989cd8f0">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/jsr305-2.0.1_ea85030207dd6997e49a23d2af06b5ef989f0518.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.amap.api/location/3.4.1/ebe380d6da0d59db86ff68c843b3b8467ab26506/location-3.4.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="ebe380d6da0d59db86ff68c843b3b8467ab26506">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/location-3.4.1_11ad321897dd0b23ae3ec1ba5e07ce79ed9d66ee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/089c998500e542c91fd7d6824a0070aedb02b86f/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e322bbbe295d71197bb4c4956a6c383743f126b2">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_a0e2d4759463a28eef7245c84aeb45f0972bc978.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/3831e66075db7859ddfc3204a1b9897e023befca/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_3f43760ef53481c8b2f6dce757b1fac127af6c1f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/32217e7f7ab480525582f05bbb819da685bf58b6/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="fab3c7faab3bc30df0fbf2cbebfcb21753c95260">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_1599428c180bff3a54a94af4e9c80cbbc8e0c427.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/commons-cli/commons-cli/1.2/2bf96b7aa8b611c177d329452af1dc933e14501c/commons-cli-1.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="2bf96b7aa8b611c177d329452af1dc933e14501c">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/commons-cli-1.2_535efdb1d5e637e98e779a672a5be0fc55185b80.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="890181e2a4fab6727b8e5c33aed1cf29224e33da">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/cn.daily.android-core-library-5.2.1.9-SNAPSHOT_54be61cd85d7189ae1bc0ea94a20116e8f57641d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/e15988858a73c91887753454012e075017c1ee1a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_87f5a567481f4cdc691def31eab629b83b46a562.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.umeng.sdk/analytics/7.5.0/a0ccae17355c8fe505a8b2ada8c4b559d672f55/analytics-7.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0a0ccae17355c8fe505a8b2ada8c4b559d672f55">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/analytics-7.5.0_731d35fcc3c048e6acf996a9e924914aab5fca1a.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_Sina_Simplify.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="01e9d7608a5af0c13061b6d30579ef00986455cb">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/SocialSDK_Sina_Simplify_0511d149d56c71922686de9d8c090d1ab4f9c86f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_api.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b1143e9e43802adba372e170165d8d90d0ff8d78">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/umeng_social_api_4f36b1405bd7d604073a784741232d3aac79800d/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_api.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="b1143e9e43802adba372e170165d8d90d0ff8d78">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/umeng_social_api_4f36b1405bd7d604073a784741232d3aac79800d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_2ae9ad001b1e475fbea468ee9cb0241e98a1b7eb.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_tool.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8b17b7c71ac912fb54ad4df2c5d1f3b36ec95837">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/umeng_social_tool_6746e310e485b0a3246626be3458000fb661010d/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_Sina_Simplify.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="01e9d7608a5af0c13061b6d30579ef00986455cb">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/SocialSDK_Sina_Simplify_0511d149d56c71922686de9d8c090d1ab4f9c86f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/org.jsoup/jsoup/1.10.2/33ee82e324f4b1e40167f3dc5e01234a1c5cab61/jsoup-1.10.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="33ee82e324f4b1e40167f3dc5e01234a1c5cab61">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/jsoup-1.10.2_9348dc5addc714652ee10b540bafc47dc5c916b3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/glide/4.3.1/9afb77c8712b19e421caecefe8e85e98ab327ce7/glide-4.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9afb77c8712b19e421caecefe8e85e98ab327ce7">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/glide-4.3.1_7291617da3e33b3d089e7a73b23e7daad93edaff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_tool.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="8b17b7c71ac912fb54ad4df2c5d1f3b36ec95837">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/umeng_social_tool_6746e310e485b0a3246626be3458000fb661010d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.1/2a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0/gson-2.8.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="02a8e0aa38a2e21cb39e2f5a7d6704cbdc941da0">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/gson-2.8.1_de8ed280c3bd1213a4cc9f8e20f614f89724cb4d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/6da65528a45963e25848235d8329aa88c0105e8a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_dd2e5fb426bab83f05cb5ec75b3729d40b5bed71.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/daily-vr/build/intermediates/bundles/default/libs/utovr_player_1.0.8272.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c042d9fdde27c091df8ee37ba494ae9fcded30c5">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/8/utovr_player_1.0.8272_857396774d6a3c57d4fe5eb56109849f93ed8523/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/.android/build-cache/a1178421188802ba8596706e39d403bf933b1a66/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f46121a7c3b3ba958fc27c39447ae205be23ac4a">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0f4638fbd8701bd60b529882b08251ccebc45f53/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.jakewharton/butterknife-annotations/8.6.0/48efa6f14074e1a6b16e02ac05eba3fc5c7c7ec8/butterknife-annotations-8.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="48efa6f14074e1a6b16e02ac05eba3fc5c7c7ec8">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/butterknife-annotations-8.6.0_59d9de287aabe54b626f5ef90cb047756b6c1208.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/daily-vr/build/intermediates/bundles/default/libs/utovr_player_1.0.8272.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="c042d9fdde27c091df8ee37ba494ae9fcded30c5">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/utovr_player_1.0.8272_857396774d6a3c57d4fe5eb56109849f93ed8523.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/a1178421188802ba8596706e39d403bf933b1a66/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="f46121a7c3b3ba958fc27c39447ae205be23ac4a">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_0f4638fbd8701bd60b529882b08251ccebc45f53.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/annotations/4.3.1/a786169ed0f768a589503844726f2380bb2139c/annotations-4.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="0a786169ed0f768a589503844726f2380bb2139c">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/annotations-4.3.1_6acd4d66d2253329a1540ab54f76d8b2caf3050a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/com.bianfeng.woa_v2.0.7_release.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4b548191f9c59435cc3ad9ee1a331e933b37682c">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/com.bianfeng.woa_v2.0.7_release_9d76fd68f37a5851a3ad4e1dd3d408be11e52ab1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/passport.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1ab8696ddaf3d202154d6217811d5f966c8e953e">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/passport_9d69ed7c5cc61a56b5b84ea458354d60355f2e45.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.1/99895d4dc6d79efbb74360f13c556d95533ad8f8/rxjava-2.1.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="99895d4dc6d79efbb74360f13c556d95533ad8f8">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/rxjava-2.1.1_ab7425c310fc49fed0b320dc487ca10b9d27d913.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_QQ_Simplify.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="979e86baea93da217d1d6dd8649d04a11624c183">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/SocialSDK_QQ_Simplify_fad32f065c1ea43d3ff1a2acdab49f37456d75d9.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/com.bianfeng.woa_v2.0.7_release.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4b548191f9c59435cc3ad9ee1a331e933b37682c">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.bianfeng.woa_v2.0.7_release_9d76fd68f37a5851a3ad4e1dd3d408be11e52ab1/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.1/4d060ca3190df0eda4dc13415532a12e15ca5f11/okhttp-3.8.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/okhttp-3.8.1_c5c464678b36e6d1d7da3d352f5cbd1330e1bfd1.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_WeChat_Simplify.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="fedb13cbfab727c73c9b2d91f5f1b8ab9c91980f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/SocialSDK_WeChat_Simplify_cd8bcd17ca712f2a3703494eeaffa73e75f1c298/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/c1330f8ab5d067682fe3bf8e4abae6dcec71a731/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_b34b4d8694f551942b7eedde8bc9980421e873fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/91d6099dc87fd03d1801ea85ae6edcc4b262bdd2/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="94d44e532add5c29861864fec2bc793d2692deee">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_e56a167ae1af8862ad6e8d2c4fa223ce6336564e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/df645e6b98177666c0f6903016f9634c59e83344/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="be587097e648eabfb7f9eca23ab03369894e2d5d">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_80f1cd6b9d28ecc50b87843cd54d0ea8662b04eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/4d3ab90ab4db923a33440a7ae7e7dbcaa9d4461a/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_90656caabb43bbce09f615620cfc89a8bda4ec4b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_WeChat_Simplify.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="fedb13cbfab727c73c9b2d91f5f1b8ab9c91980f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/SocialSDK_WeChat_Simplify_cd8bcd17ca712f2a3703494eeaffa73e75f1c298.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/e9773469affba060fb0028fe1d1a1dc9dffcf834/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6817d2f1871e5bf796d0f03dbe1960d7aeff834f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_a83356a142e9aa71658a1061aaab4da89b982f0e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.mcxiaoke.volley/library/1.0.19/a8f23f65fc1e522ee4a1a697ee569901a46741fa/library-1.0.19.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="a8f23f65fc1e522ee4a1a697ee569901a46741fa">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/library-1.0.19_222798b21b1646683ea1435276a808777a5bc9e7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.0/931532e953a477f876f2de18c2e7f16eee01078f/constraint-layout-solver-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="931532e953a477f876f2de18c2e7f16eee01078f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/constraint-layout-solver-1.1.0_77b47ba4abe6bff480c4c7526ef34914a6d73aa3.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/8c1259bcc655e136b61329c14d806519097fd3d4/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_af59e53708e9d8ba2c2059d1c76eed3f45f09f39.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/25.3.1/support-annotations-25.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/support-annotations-25.3.1_493c3d8d91e41afede67b60808fcad9f5ff3edf2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/3e70efc2c1d67c6af0591ce6cfc664f4d0a8863d/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_4a380e7994516436109238e7dd2e7da9f37c7506.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_QQ_Simplify.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="979e86baea93da217d1d6dd8649d04a11624c183">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/SocialSDK_QQ_Simplify_fad32f065c1ea43d3ff1a2acdab49f37456d75d9/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/disklrucache/4.3.1/9eaeaefa25c6ff18d7008f06208d41a261d8b29b/disklrucache-4.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="9eaeaefa25c6ff18d7008f06208d41a261d8b29b">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/disklrucache-4.3.1_b7e1a81c3d11e984d9a3a04ea967080aaca6b207.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/6fbd60adb0091783a9732cc85fe28c389ad7ffdd/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="6f6f537ecb44312790e8657a71b6cda062a17b37">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_30d04d5f2735b6e3b030f004840cec3bb01e4bab.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.android.support.constraint/constraint-layout-solver/1.1.0/931532e953a477f876f2de18c2e7f16eee01078f/constraint-layout-solver-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="931532e953a477f876f2de18c2e7f16eee01078f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.1.0_77b47ba4abe6bff480c4c7526ef34914a6d73aa3/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/21074e45ef3f601708003d7db9bf4cbfaab23fac/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_a77a89eefc46871185e1a855bd493977a264ab7f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/5824d537e4dc2f66ae828d722704cc08b1976452/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="e8be6477f3134dd389b07c8b01c29309d821de83">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_f99f90d88b928c04a9c49aa3792bbe3555690259.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.umeng.sdk/common/1.5.0/d56a68f51717a8752af91e97240275205f73b62f/common-1.5.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d56a68f51717a8752af91e97240275205f73b62f">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/common-1.5.0_78ef0930648eccfa37d98b39d8b21b42cc546be5.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/a28ed3a4e4f069406444477c144eeee2b1d7f7c1/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="4814e56acfe3d18db21e94103ec415ec0b8f39f1">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_4d6199a8013c69680cf52a14e8ec5ba6d8fc4e7f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/3792bdbd88978b2309b18156e3d5301b0cbdf25b/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_c10cc01d06a4d2ca7634943ce2601904c0d20f8f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/1d3564c135f2b78c05e2b43713dc15bd66afb136/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_acdc67b3b0e3f116c03a83d71dd2e7241659325b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/332dfcb8150b9558b0b62bf3efd1fea80b1221d0/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_56f29f1250f75272418a8455d0a19f49861e52e2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.gradle/caches/modules-2/files-2.1/com.github.bumptech.glide/gifdecoder/4.3.1/dc06b7679496073ef4505005b4c5995f522503cd/gifdecoder-4.3.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="dc06b7679496073ef4505005b4c5995f522503cd">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/gifdecoder-4.3.1_90e6a82426548e8191210c1d605d43d3cc39fdf1.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/passport.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="1ab8696ddaf3d202154d6217811d5f966c8e953e">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/transforms/dex/debug/folders/1000/10/passport_9d69ed7c5cc61a56b5b84ea458354d60355f2e45/classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/gary/.android/build-cache/8ecf76445aaba169afdb6b5c7f08869dc813478e/output/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.3"
+        sha1="dcc7ce76dcc2f05c9acb1c026a82c4ed6b949428">
+        <dex dex="/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/app/build/intermediates/pre-dexed/debug/classes_0e5f59a708e43ddcd7e72de7335b38302b9f056c.jar" />
+    </item>
+
+</items>
