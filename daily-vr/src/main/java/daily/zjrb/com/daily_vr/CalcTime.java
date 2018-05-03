@@ -49,6 +49,10 @@ public final class CalcTime {
         return Utils.formatTime(position);
     }
 
+    public String formatPosition(int position) {
+        return Utils.formatTime(position);
+    }
+
     public String formatDuration() {
         return Utils.formatTime(duration);
     }

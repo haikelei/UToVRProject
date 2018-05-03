@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
+import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -90,6 +91,8 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
     private RelativeLayout container;
     private boolean mCurrentIsLand;
     private Activity activity;
+    private int screenchange;
+    private LinearLayout playerRestart;
 
     public void setActivity(Activity activity) {
         this.activity = activity;
@@ -111,18 +114,33 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
                     switchFromUser = false;
                 }
 
+                try {
+                    //屏幕旋转是否开启 0未开启 1开启
+                    screenchange = Settings.System.getInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
+                } catch (Settings.SettingNotFoundException e) {
+                    e.printStackTrace();
+                }
                 if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
-                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-                    changeOrientation(true);
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                        changeOrientation(true);
+                    }
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
-                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-                    changeOrientation(false);
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                        changeOrientation(false);
+                    }
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
-                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                    changeOrientation(true);
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                        changeOrientation(true);
+                    }
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
-                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                    changeOrientation(false);
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                        changeOrientation(false);
+                    }
+
                 }
             }
         });
@@ -148,7 +166,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
     public void setPlayer(final UVMediaPlayer player) {
         this.player = player;
         calcTime = new CalcTime();
-        player.setNetWorkListenser(new UVNetworkListenser() {//第一次播放视频不会触发
+        player.setNetWorkListenser(new UVNetworkListenser() {//播放过程中的网络变化
             @Override
             public void onNetworkChanged(int i) {
                 if(i == UVNetworkListenser.NETWORK_WIFI){//wifi
@@ -195,6 +213,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
         playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
         bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
         container = (RelativeLayout) view.findViewById(R.id.container);
+        playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
     }
 
     private void initListener() {
@@ -219,7 +238,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
         progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-
+                playerPosition.setText(calcTime.formatPosition(progress));
             }
 
             @Override
@@ -314,10 +333,21 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
             }
         });
 
+        playerRestart.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                playerRestart.setVisibility(GONE);
+                player.replay();
+            }
+        });
+
         //呼出进度条
         container.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE){
+                    return;
+                }
                 if(mControllerBarTask == null){
                     mControllerBarTask = new ControllerBarTask();
                 }
@@ -397,7 +427,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
 
     //播放结束
     private void showEndView() {
-
+        playerRestart.setVisibility(VISIBLE);
     }
 
     @Override
@@ -435,7 +465,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
         handler.post(updatePositionTask);
     }
 
-    //呼出进度条
+    //隐藏进度条
     public  ControllerBarTask mControllerBarTask;
     class ControllerBarTask implements  Runnable{
 
@@ -523,11 +553,15 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
 
 
 
+
+
     public void onNetWorkChanged() {
+        if(NetUtils.isMobile()){
+            playerNetHint.setVisibility(VISIBLE);
+            playerNetHint.setText("用流量播放");
+        }
         if(playerNetHint.getVisibility() == VISIBLE){
-            if(NetUtils.isMobile()){
-                playerNetHint.setText("用流量播放");
-            }else if(NetUtils.isWifi()){
+            if(NetUtils.isWifi()){
                 playerNetHint.setText("已切换至wifi");
             }
         }

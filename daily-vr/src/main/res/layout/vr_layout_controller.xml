@@ -23,10 +23,11 @@
     <CheckBox
         android:button="@null"
         android:id="@+id/player_ic_volume"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         android:layout_alignParentRight="true"
         android:layout_marginRight="7dp"
+        android:layout_marginTop="7dp"
         android:background="@drawable/vr_video_toolbar_tb_volume" />
 
     <ProgressBar
@@ -54,51 +55,14 @@
         android:minWidth="50dp"
         android:visibility="gone" />
 
-    <LinearLayout
-        android:id="@+id/ll_start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:layout_gravity="left|bottom"
-            android:layout_margin="11.5dp"
-            android:background="@drawable/module_video_bg_oval_7f000000"
-            android:foreground="?attr/actionBarItemBackground"
-            android:gravity="center"
-            android:orientation="vertical">
+    <!--播放-->
+    <include layout="@layout/vr_layout_start_area"></include>
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/module_detail_ic_play_start"
-                app:iv_maskColor="@color/module_detail_tc_white_night" />
+    <!--重播-->
+    <include layout="@layout/vr_layout_restart_area"
+        android:visibility="gone"
+        ></include>
 
-            <TextView
-                android:id="@+id/tv_duration"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:letterSpacing="0.03"
-                android:textColor="?attr/tc_ffffff"
-                android:textSize="11dp"
-                android:visibility="gone"
-                tools:text="00:00" />
 
-        </LinearLayout>
-        <TextView
-            android:layout_gravity="center_horizontal"
-            android:id="@+id/tv_net_hint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:letterSpacing="0.03"
-            android:textColor="?attr/tc_ffffff"
-            android:textSize="11dp"
-            android:visibility="gone"
-            />
-
-    </LinearLayout>
 
 </RelativeLayout>

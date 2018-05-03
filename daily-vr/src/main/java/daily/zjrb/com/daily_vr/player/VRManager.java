@@ -26,11 +26,7 @@ public class VRManager implements UVPlayerCallBack {
     private UVMediaPlayer mMediaplayer = null;  // 媒体视频播放器
     private final Controller mController;
 
-
-
-//    private String Path = "https://v-cdn.zjol.com.cn/152688_ts.mp4?userId=37c83028-bc45-40d0-b41c-b12ac62363d3";
     private ViewGroup rlParent;
-    private int SmallPlayH = 0;
     private BroadcastReceiver networkChangeReceiver;
     private Activity activity;
 
@@ -132,7 +128,7 @@ public class VRManager implements UVPlayerCallBack {
     /**
      * 设置网络监听
      */
-    private void setBreoadcast() {
+    public void setBreoadcast() {
         networkChangeReceiver = new NetworkChangeReceiver();
         IntentFilter filter=new IntentFilter();
         filter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
