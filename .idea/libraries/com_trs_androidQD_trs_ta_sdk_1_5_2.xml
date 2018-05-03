@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.trs.androidQD:trs_ta_sdk-1.5.2">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.android/build-cache/089c998500e542c91fd7d6824a0070aedb02b86f/output/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.android/build-cache/089c998500e542c91fd7d6824a0070aedb02b86f/output/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.trs.androidQD/trs_ta_sdk/1.5.2/873ea886ae4c85f70160c9e0c55dfc40e5fcfb68/trs_ta_sdk-1.5.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

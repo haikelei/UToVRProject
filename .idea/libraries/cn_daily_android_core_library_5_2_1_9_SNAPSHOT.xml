@@ -1,0 +1,20 @@
+<component name="libraryTable">
+  <library name="cn.daily.android:core-library-5.2.1.9-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_net.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_tool.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_Sina_Simplify.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/res" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/com.bianfeng.woa_v2.0.7_release.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/umeng_social_api.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_WeChat_Simplify.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/SocialSDK_QQ_Simplify.jar!/" />
+      <root url="jar://$PROJECT_DIR$/daily-vr/build/intermediates/exploded-aar/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/jars/libs/passport.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/cn.daily.android/core-library/5.2.1.9-SNAPSHOT/539681380695e0f365a23c3e8c2fcf27125e839f/core-library-5.2.1.9-SNAPSHOT-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
