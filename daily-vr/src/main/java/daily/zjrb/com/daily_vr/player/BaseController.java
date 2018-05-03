@@ -12,6 +12,7 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -88,10 +89,16 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
     private ProgressBar bottomProgressBar;
     private RelativeLayout container;
     private boolean mCurrentIsLand;
+    private Activity activity;
+
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
 
     public void setWindow(Window window) {
         this.window = window;
     }
+
 
     public void setParent(final ViewGroup parent) {
         this.parent = parent;
@@ -105,20 +112,21 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
                 }
 
                 if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
-                    ((Activity)parent.getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
                     changeOrientation(true);
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
-                    ((Activity)parent.getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
                     changeOrientation(false);
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
-                    ((Activity)parent.getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                     changeOrientation(true);
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
-                    ((Activity)parent.getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                     changeOrientation(false);
                 }
             }
         });
+        initListener();
     }
 
     public BaseController(Context context) {
@@ -133,7 +141,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
         super(context, attrs, defStyleAttr);
         this.context = context;
         initView(context);
-        initListener();
+//        initListener();
     }
 
 
@@ -277,7 +285,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
             @Override
             public void onClick(View v) {
                 switchFromUser = true;
-                ((Activity)parent.getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 changeOrientation(false);
             }
         });
@@ -287,7 +295,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
             @Override
             public void onClick(View v) {
                 switchFromUser = true;
-                ((Activity)parent.getContext()).setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 changeOrientation(true);
             }
         });

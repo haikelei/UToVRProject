@@ -44,7 +44,7 @@ public class VRFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //初始化播放器
         rlParent = (RelativeLayout) view.findViewById(R.id.activity_rlParent);
-        vrManager = new VRManager(getContext(), rlParent);
+        vrManager = new VRManager(getActivity(), rlParent);
         vrManager.changeOrientation(false);
         vrManager.getController().setSource(UVMediaType.UVMEDIA_TYPE_M3U8, Path);
     }

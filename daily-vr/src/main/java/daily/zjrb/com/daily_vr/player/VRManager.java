@@ -32,25 +32,27 @@ public class VRManager implements UVPlayerCallBack {
     private ViewGroup rlParent;
     private int SmallPlayH = 0;
     private BroadcastReceiver networkChangeReceiver;
+    private Activity activity;
 
-    public VRManager(Context context, ViewGroup parent) {
+    public VRManager(Activity activity, ViewGroup parent) {
+        this.activity = activity;
         rlParent = parent;
         //添加播放器
-        RelativeLayout realParent = new RelativeLayout(context);
+        RelativeLayout realParent = new RelativeLayout(parent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         realParent.setLayoutParams(params);
         parent.addView(realParent);
-        mMediaplayer = new UVMediaPlayer(context, realParent,this);
+        mMediaplayer = new UVMediaPlayer(parent.getContext(), realParent,this);
 
         //添加controller
-        mController = new Controller(context);
+        mController = new Controller(parent.getContext());
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         mController.setLayoutParams(params1);
         mController.setPlayer(mMediaplayer);
 
-        Window window =  ((Activity)rlParent.getContext()).getWindow();
+        mController.setActivity(activity);
         mController.setParent(rlParent);
-        mController.setWindow(window);
+        mController.setWindow(activity.getWindow());
         parent.addView(mController);
 
 
