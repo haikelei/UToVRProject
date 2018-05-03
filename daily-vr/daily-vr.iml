@@ -63,13 +63,6 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/rs" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/shaders" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
-      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/res" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/resources" type="java-test-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/assets" type="java-test-resource" />
@@ -77,6 +70,13 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/rs" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/test/shaders" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/res" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/resources" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/assets" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/aidl" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/java" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/rs" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/src/androidTest/shaders" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/annotations" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/attr" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/blame" />
@@ -107,52 +107,57 @@
     <orderEntry type="jdk" jdkName="Android API 25 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="com.android.support:multidex-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="com.aliya:android-uimode-0.2.9" level="project" />
     <orderEntry type="library" exported="" name="cn.core.android:core-glide-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="com.umeng.sdk:common:1.5.0@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.mcxiaoke.volley:library:1.0.19@jar" level="project" />
-    <orderEntry type="library" exported="" name="cn.daily.android:analytics-5.0.1.5" level="project" />
-    <orderEntry type="library" exported="" scope="TEST" name="com.android.support:multidex-instrumentation-1.0.1" level="project" />
-    <orderEntry type="library" exported="" name="__local_jars__:/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/daily-vr/libs/utovr_player_1.0.8272.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" name="com.aliya:fitwindow-1.0.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-core-ui-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-compat-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.gson:gson:2.8.1@jar" level="project" />
     <orderEntry type="library" exported="" name="io.reactivex.rxjava2:rxjava:2.1.1@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.squareup.okhttp3:okhttp:3.8.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.github.bumptech.glide:disklrucache:4.3.1@jar" level="project" />
-    <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.10.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support.constraint:constraint-layout-solver:1.0.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-core-utils-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support.constraint:constraint-layout-1.0.2" level="project" />
-    <orderEntry type="library" exported="" name="com.squareup.okio:okio:1.13.0@jar" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-v4-25.3.1" level="project" />
-    <orderEntry type="library" exported="" name="com.android.support:support-fragment-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-media-compat-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.google.code.findbugs:jsr305:2.0.1@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.facebook.stetho:stetho-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="com.umeng.sdk:analytics:7.5.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.github.bumptech.glide:glide:4.3.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:transition-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:design-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="cn.daily.android:core-library-5.2.1.9-SNAPSHOT" level="project" />
+    <orderEntry type="library" exported="" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.exoplayer:exoplayer-dash-r2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/UToVRProject/daily-vr/libs/Native_Libs2.jar:unspecified@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.exoplayer:exoplayer-core-r2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="com.aliya:android-player-0.2.2" level="project" />
+    <orderEntry type="library" exported="" name="cn.daily.android:biz-core-5.0.0.6" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-vector-drawable-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="com.amap.api:location:3.4.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.github.bumptech.glide:annotations:4.3.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.exoplayer:exoplayer-hls-r2.5.2" level="project" />
+    <orderEntry type="library" exported="" name="com.aliya:android-uimode-0.2.9" level="project" />
+    <orderEntry type="library" exported="" name="com.mcxiaoke.volley:library:1.0.19@jar" level="project" />
+    <orderEntry type="library" exported="" name="cn.daily.android:analytics-5.0.1.5" level="project" />
+    <orderEntry type="library" exported="" name="com.google.android.exoplayer:exoplayer-smoothstreaming-r2.5.2" level="project" />
+    <orderEntry type="library" exported="" scope="TEST" name="com.android.support:multidex-instrumentation-1.0.1" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.okhttp3:okhttp:3.8.1@jar" level="project" />
+    <orderEntry type="library" exported="" name="org.jsoup:jsoup:1.10.2@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.squareup.okio:okio:1.13.0@jar" level="project" />
+    <orderEntry type="library" exported="" name="com.android.support:support-fragment-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="com.facebook.stetho:stetho-1.5.0" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:animated-vector-drawable-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="io.reactivex.rxjava2:rxandroid-2.0.1" level="project" />
     <orderEntry type="library" exported="" name="commons-cli:commons-cli:1.2@jar" level="project" />
     <orderEntry type="library" exported="" name="com.jakewharton:butterknife-8.6.0" level="project" />
-    <orderEntry type="library" exported="" name="com.github.bumptech.glide:glide:4.3.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.aliya:bannerview-0.1.1" level="project" />
-    <orderEntry type="library" exported="" name="com.android.support:transition-25.3.1" level="project" />
-    <orderEntry type="library" exported="" name="com.android.support:design-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.github.bumptech.glide:gifdecoder:4.3.1@jar" level="project" />
     <orderEntry type="library" exported="" name="com.trs.androidQD:trs_ta_sdk-1.5.2" level="project" />
-    <orderEntry type="library" exported="" name="cn.daily.android:core-library-5.2.1.9-SNAPSHOT" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:appcompat-v7-25.3.1" level="project" />
+    <orderEntry type="library" exported="" name="__local_jars__:/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/UToVRProject/daily-vr/libs/utovr_player_1.0.8272.jar:unspecified@jar" level="project" />
     <orderEntry type="library" exported="" name="com.aliya:ratioview-0.1.3" level="project" />
-    <orderEntry type="library" exported="" name="org.reactivestreams:reactive-streams:1.0.0@jar" level="project" />
-    <orderEntry type="library" exported="" name="__local_jars__:/Users/gary/MainProject/androidStuiodProjects/zhejiangxinwen/VRProject/daily-vr/libs/Native_Libs2.jar:unspecified@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.android.support:support-vector-drawable-25.3.1" level="project" />
-    <orderEntry type="library" exported="" name="cn.daily.android:biz-core-5.0.0.6" level="project" />
     <orderEntry type="library" exported="" name="com.jakewharton:butterknife-annotations:8.6.0@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.amap.api:location:3.4.1@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.github.bumptech.glide:annotations:4.3.1@jar" level="project" />
-    <orderEntry type="library" exported="" name="com.android.support:recyclerview-v7-25.3.1" level="project" />
     <orderEntry type="library" exported="" name="com.android.support:support-annotations:25.3.1@jar" level="project" />
   </component>
 </module>

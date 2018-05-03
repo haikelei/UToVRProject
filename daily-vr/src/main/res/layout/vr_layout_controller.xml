@@ -1,8 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/container"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include layout="@layout/vr_video_play_tools" />
+    <!--竖屏controller-->
+    <include layout="@layout/vr_layout_v_controller"
+        android:id="@+id/controller_v"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        ></include>
+
+    <!--横屏controller-->
+    <include layout="@layout/vr_layout_l_controller"
+        android:id="@+id/controller_l"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        ></include>
+
+    <CheckBox
+        android:button="@null"
+        android:id="@+id/player_ic_volume"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="7dp"
+        android:background="@drawable/vr_video_toolbar_tb_volume" />
+
+    <ProgressBar
+        android:id="@+id/player_bottom_progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:indeterminateOnly="false"
+        android:max="1000"
+        android:maxHeight="1dp"
+        android:minHeight="1dp"
+        android:progressDrawable="@drawable/module_player_progress_bar_drawable" />
+
+    <ProgressBar
+        android:id="@+id/player_buffer_progress"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:indeterminateDrawable="@drawable/module_player_buffer_progress"
+        android:indeterminateDuration="2000"
+        android:minHeight="50dp"
+        android:minWidth="50dp"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/ll_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="58dp"
+            android:layout_height="58dp"
+            android:layout_gravity="left|bottom"
+            android:layout_margin="11.5dp"
+            android:background="@drawable/module_video_bg_oval_7f000000"
+            android:foreground="?attr/actionBarItemBackground"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/module_detail_ic_play_start"
+                app:iv_maskColor="@color/module_detail_tc_white_night" />
+
+            <TextView
+                android:id="@+id/tv_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:letterSpacing="0.03"
+                android:textColor="?attr/tc_ffffff"
+                android:textSize="11dp"
+                android:visibility="gone"
+                tools:text="00:00" />
+
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/tv_net_hint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:letterSpacing="0.03"
+            android:textColor="?attr/tc_ffffff"
+            android:textSize="11dp"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
 
 </RelativeLayout>

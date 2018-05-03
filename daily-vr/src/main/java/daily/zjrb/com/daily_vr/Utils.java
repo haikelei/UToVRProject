@@ -1,7 +1,9 @@
 package daily.zjrb.com.daily_vr;
 
+import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
+import android.view.Window;
 import android.widget.ImageView;
 
 import com.utovr.player.UVEventListener;
@@ -134,6 +136,18 @@ public class Utils
         int hours = totalSeconds / 3600;
         return hours > 0 ? String.format("%02d:%02d:%02d", hours, minutes, seconds) : String
                 .format("%02d:%02d", minutes, seconds);
+    }
+
+    public static int getSmallPlayHeight(Window window) {
+        int ScreenW = window.getWindowManager().getDefaultDisplay().getWidth();
+        int ScreenH = window.getWindowManager().getDefaultDisplay().getHeight();
+        if (ScreenW > ScreenH)
+        {
+            int temp = ScreenW;
+            ScreenW = ScreenH;
+            ScreenH = temp;
+        }
+        return ScreenW * ScreenW / ScreenH;
     }
 
 }
