@@ -16,13 +16,16 @@ import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -32,6 +35,7 @@ import android.widget.TextView;
 
 import com.aliya.player.gravity.OrientationHelper;
 import com.aliya.player.gravity.OrientationListener;
+import com.utovr.ma;
 import com.utovr.player.UVEventListener;
 import com.utovr.player.UVInfoListener;
 import com.utovr.player.UVMediaPlayer;
@@ -45,6 +49,7 @@ import butterknife.ButterKnife;
 import daily.zjrb.com.daily_vr.CalcTime;
 import daily.zjrb.com.daily_vr.R;
 import daily.zjrb.com.daily_vr.Utils;
+import daily.zjrb.com.daily_vr.ui.ControllerContainer;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
 
@@ -55,7 +60,7 @@ import static android.content.Context.CONNECTIVITY_SERVICE;
  */
 
 
-abstract class BaseController extends RelativeLayout implements UVEventListener, UVInfoListener {
+public abstract class BaseController extends RelativeLayout implements UVEventListener, UVInfoListener {
 
 
     protected SeekBar progressBar;
@@ -77,7 +82,6 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
     private ImageView spread;
     private LinearLayout lController;
     private LinearLayout vController;
-    private Window window;
     private ViewGroup parent;
     private int mLastOrientation = -100;//上一次的方向记录
     private boolean switchFromUser;
@@ -88,19 +92,17 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
     protected  String path;
     private TextView playerNetHint;
     private ProgressBar bottomProgressBar;
-    private RelativeLayout container;
+    private ControllerContainer container;
     private boolean mCurrentIsLand;
     private Activity activity;
     private int screenchange;
     private LinearLayout playerRestart;
+    private FrameLayout placeHolder;
 
     public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
-    public void setWindow(Window window) {
-        this.window = window;
-    }
 
 
     public void setParent(final ViewGroup parent) {
@@ -212,12 +214,13 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
         playerStart = (LinearLayout) view.findViewById(R.id.ll_start);
         playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
         bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
-        container = (RelativeLayout) view.findViewById(R.id.container);
+        container = (ControllerContainer) view.findViewById(R.id.container);
         playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
+        placeHolder = (FrameLayout) view.findViewById(R.id.fl_tool_place_holder);
     }
 
     private void initListener() {
-
+        player.setToolbar(placeHolder,null,null);
         final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         //调节音量
         playerVolumn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -314,6 +317,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
             @Override
             public void onClick(View v) {
                 switchFromUser = true;
+                player.hideToolbarLater();
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 changeOrientation(true);
             }
@@ -342,10 +346,11 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
         });
 
         //呼出进度条
-        container.setOnClickListener(new OnClickListener() {
+        player.setToolVisibleListener(new ma() {
             @Override
-            public void onClick(View v) {
-                if(playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE){
+            public void a(int i) {//0显示 8隐藏
+                if(i==0){
+                    if(playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE){
                     return;
                 }
                 if(mControllerBarTask == null){
@@ -360,10 +365,9 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
                 }
                 handler.removeCallbacks(mControllerBarTask);
                 handler.postDelayed(mControllerBarTask,3000);
-
+                }
             }
         });
-
 
     }
 
@@ -520,32 +524,27 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
     public void changeOrientation(boolean isLandscape) {
         if(mCurrentIsLand != isLandscape){//屏幕横竖屏发生变化
             mCurrentIsLand = isLandscape;
-            if (isLandscape)
-            {
+            vController.setVisibility(GONE);
+            lController.setVisibility(GONE);
+            bottomProgressBar.setVisibility(VISIBLE);
+            if (isLandscape) {
 //            切换横屏
-                window.clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-                window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
+                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
+                activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN
                         | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                         RelativeLayout.LayoutParams.MATCH_PARENT,
                         RelativeLayout.LayoutParams.MATCH_PARENT);
                 parent.setLayoutParams(lp);
-                lController.setVisibility(GONE);
-                vController.setVisibility(GONE);
-                bottomProgressBar.setVisibility(VISIBLE);
-
             }
             else
             {
-                window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-                window.addFlags(
+                activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
+                activity.getWindow().addFlags(
                         WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-                int smallPlayH = Utils.getSmallPlayHeight(window);
+                int smallPlayH = Utils.getSmallPlayHeight(activity.getWindow());
                 RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, smallPlayH);
                 parent.setLayoutParams(lp);
-                lController.setVisibility(GONE);
-                vController.setVisibility(GONE);
-                bottomProgressBar.setVisibility(VISIBLE);
             }
         }
 
@@ -554,7 +553,7 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
 
 
 
-
+    //播放前的网络变化监听
     public void onNetWorkChanged() {
         if(NetUtils.isMobile()){
             playerNetHint.setVisibility(VISIBLE);
@@ -566,10 +565,6 @@ abstract class BaseController extends RelativeLayout implements UVEventListener,
             }
         }
     }
-
-
-
-
 
 
 

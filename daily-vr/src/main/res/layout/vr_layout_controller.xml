@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<daily.zjrb.com.daily_vr.ui.ControllerContainer xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/fl_tool_place_holder"></FrameLayout>
     <!--竖屏controller-->
     <include layout="@layout/vr_layout_v_controller"
         android:id="@+id/controller_v"
@@ -65,4 +69,4 @@
 
 
 
-</RelativeLayout>
+</daily.zjrb.com.daily_vr.ui.ControllerContainer>

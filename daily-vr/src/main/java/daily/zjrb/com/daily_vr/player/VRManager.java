@@ -28,10 +28,8 @@ public class VRManager implements UVPlayerCallBack {
 
     private ViewGroup rlParent;
     private BroadcastReceiver networkChangeReceiver;
-    private Activity activity;
 
     public VRManager(Activity activity, ViewGroup parent) {
-        this.activity = activity;
         rlParent = parent;
         //添加播放器
         RelativeLayout realParent = new RelativeLayout(parent.getContext());
@@ -46,14 +44,12 @@ public class VRManager implements UVPlayerCallBack {
         mController.setLayoutParams(params1);
         mController.setPlayer(mMediaplayer);
 
+        //设置外部变量
         mController.setActivity(activity);
         mController.setParent(rlParent);
-        mController.setWindow(activity.getWindow());
+
         parent.addView(mController);
-
-
         setBreoadcast();
-
     }
 
     public UVMediaPlayer getPlayer(){
