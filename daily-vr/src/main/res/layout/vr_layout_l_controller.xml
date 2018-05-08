@@ -80,7 +80,7 @@
         android:layout_height="20dp"
         android:scaleType="center"
         android:button="@null"
-        android:background="@drawable/vr_video_toolbar_tb_gyro"
+        android:background="?attr/vr_gyroscope"
         />
 
     <CheckBox
@@ -88,10 +88,10 @@
         android:layout_marginRight="5dp"
         android:id="@+id/player_l_play_screen"
         android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_height="13.2dp"
         android:scaleType="center"
         android:button="@null"
-        android:background="@drawable/vr_video_toolbar_tb_screen"
+        android:background="?attr/vr_screen"
         />
 
 
