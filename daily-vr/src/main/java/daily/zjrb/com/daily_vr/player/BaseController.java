@@ -1,5 +1,7 @@
 package daily.zjrb.com.daily_vr.player;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -23,6 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -69,7 +75,7 @@ public abstract class BaseController extends RelativeLayout implements UVEventLi
     protected CalcTime calcTime;
     Handler handler = new Handler();
     private boolean bufferResume = true;
-    ProgressBar hintBufferProgress;
+    ImageView hintBufferProgress;
     TextView playerDuration;
     TextView playerPosition;
     private TextView playerLDuration;
@@ -209,7 +215,13 @@ public abstract class BaseController extends RelativeLayout implements UVEventLi
         retract = (ImageView) view.findViewById(R.id.player_l_small_screen);
 
         //通用ui
-        hintBufferProgress = (ProgressBar) view.findViewById(R.id.player_buffer_progress);
+        hintBufferProgress = (ImageView) view.findViewById(R.id.player_buffer_progress);
+        ObjectAnimator anim = ObjectAnimator.ofFloat(hintBufferProgress, "rotation", 0f, 360f);
+        anim.setDuration(900);
+        anim.setInterpolator(new LinearInterpolator());
+        anim.setRepeatMode(ValueAnimator.RESTART);
+        anim.setRepeatCount(ValueAnimator.INFINITE);
+        anim.start();
         playerVolumn = (CheckBox) view.findViewById(R.id.player_ic_volume);
         playerStart = (LinearLayout) view.findViewById(R.id.ll_start);
         playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
