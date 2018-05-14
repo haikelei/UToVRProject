@@ -66,7 +66,7 @@ import static android.content.Context.CONNECTIVITY_SERVICE;
  */
 
 
-public abstract class BaseController extends RelativeLayout implements UVEventListener, UVInfoListener {
+public class BaseController extends RelativeLayout implements UVEventListener, UVInfoListener {
 
 
     protected SeekBar progressBar;
@@ -88,112 +88,33 @@ public abstract class BaseController extends RelativeLayout implements UVEventLi
     private ImageView spread;
     private LinearLayout lController;
     private LinearLayout vController;
-    private ViewGroup parent;
+    protected ViewGroup parent;
     private int mLastOrientation = -100;//上一次的方向记录
     private boolean switchFromUser;
-    private Context context;
     private CheckBox playerVolumn;
     private LinearLayout playerStart;
     protected UVMediaType type;
     protected  String path;
     private TextView playerNetHint;
     private ProgressBar bottomProgressBar;
-    private ControllerContainer container;
     private boolean mCurrentIsLand;
-    private Activity activity;
+    protected Activity activity;
     private int screenchange;
     private LinearLayout playerRestart;
     private FrameLayout placeHolder;
 
-    public void setActivity(Activity activity) {
+    public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent){
+        super(activity);
+        this.player = player;
         this.activity = activity;
-    }
-
-
-
-    public void setParent(final ViewGroup parent) {
         this.parent = parent;
-        OrientationHelper orientationHelper = new OrientationHelper();
-        orientationHelper.registerListener(parent.getContext(), new OrientationListener() {
-            @Override
-            public void onOrientation(int orientation) {
-                if(mLastOrientation != orientation){//方向变化后
-                    mLastOrientation = orientation;
-                    switchFromUser = false;
-                }
-
-                try {
-                    //屏幕旋转是否开启 0未开启 1开启
-                    screenchange = Settings.System.getInt(context.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
-                } catch (Settings.SettingNotFoundException e) {
-                    e.printStackTrace();
-                }
-                if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-                        changeOrientation(true);
-                    }
-                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-                        changeOrientation(false);
-                    }
-                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                        changeOrientation(true);
-                    }
-                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                        changeOrientation(false);
-                    }
-
-                }
-            }
-        });
+        initView(activity);
         initListener();
     }
 
-    public BaseController(Context context) {
-        this(context,null);
-    }
-
-    public BaseController(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
-    }
-
-    public BaseController(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        this.context = context;
-        initView(context);
-//        initListener();
-    }
-
-
-    public void setPlayer(final UVMediaPlayer player) {
-        this.player = player;
-        calcTime = new CalcTime();
-        player.setNetWorkListenser(new UVNetworkListenser() {//播放过程中的网络变化
-            @Override
-            public void onNetworkChanged(int i) {
-                if(i == UVNetworkListenser.NETWORK_WIFI){//wifi
-
-                }else if(i == UVNetworkListenser.NETWORK_MOBILE_2G || i == UVNetworkListenser.NETWORK_MOBILE_3G ||i == UVNetworkListenser.NETWORK_MOBILE_4G){
-                    if(player.isPlaying()){
-                        playerStart.setVisibility(VISIBLE);
-                        playerNetHint.setVisibility(VISIBLE);
-                        playerNetHint.setText("用流量播放");
-                        buttonPlayPause.setChecked(true);
-                        buttonLPlayPause.setChecked(true);
-                    }
-                }
-            }
-        });
-    }
 
     public void initView(Context context){
-        View view = LayoutInflater.from(context).inflate(getLayoutResId(), this, true);
+        View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
         ButterKnife.bind(view);
         updatePositionTask = new UpdatePositionTask();
         //竖屏相关
@@ -226,14 +147,76 @@ public abstract class BaseController extends RelativeLayout implements UVEventLi
         playerStart = (LinearLayout) view.findViewById(R.id.ll_start);
         playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
         bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
-        container = (ControllerContainer) view.findViewById(R.id.container);
         playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
         placeHolder = (FrameLayout) view.findViewById(R.id.fl_tool_place_holder);
     }
 
     private void initListener() {
+
+
+        calcTime = new CalcTime();
+        player.setNetWorkListenser(new UVNetworkListenser() {//播放过程中的网络变化
+            @Override
+            public void onNetworkChanged(int i) {
+                if(i == UVNetworkListenser.NETWORK_WIFI){//wifi
+
+                }else if(i == UVNetworkListenser.NETWORK_MOBILE_2G || i == UVNetworkListenser.NETWORK_MOBILE_3G ||i == UVNetworkListenser.NETWORK_MOBILE_4G){
+                    if(player.isPlaying()){
+                        playerStart.setVisibility(VISIBLE);
+                        playerNetHint.setVisibility(VISIBLE);
+                        playerNetHint.setText("用流量播放");
+                        buttonPlayPause.setChecked(true);
+                        buttonLPlayPause.setChecked(true);
+                    }
+                }
+            }
+        });
+
+
+
+        OrientationHelper orientationHelper = new OrientationHelper();
+        orientationHelper.registerListener(parent.getContext(), new OrientationListener() {
+            @Override
+            public void onOrientation(int orientation) {
+                if(mLastOrientation != orientation){//方向变化后
+                    mLastOrientation = orientation;
+                    switchFromUser = false;
+                }
+
+                try {
+                    //屏幕旋转是否开启 0未开启 1开启
+                    screenchange = Settings.System.getInt(activity.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
+                } catch (Settings.SettingNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+                        changeOrientation(true);
+                    }
+                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+                        changeOrientation(false);
+                    }
+                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                        changeOrientation(true);
+                    }
+                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
+                    if(screenchange == 1){
+                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                        changeOrientation(false);
+                    }
+
+                }
+            }
+        });
+
+
         player.setToolbar(placeHolder,null,null);
-        final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+        final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
         //调节音量
         playerVolumn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             int currentVolume;
@@ -492,10 +475,6 @@ public abstract class BaseController extends RelativeLayout implements UVEventLi
             bottomProgressBar.setVisibility(VISIBLE);
         }
     }
-
-
-
-    abstract int getLayoutResId();
 
 //    更新ui的任务
     class UpdatePositionTask implements Runnable{

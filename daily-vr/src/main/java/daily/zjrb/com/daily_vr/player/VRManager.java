@@ -9,9 +9,9 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.util.Log;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.RelativeLayout;
 
+import com.trs.tasdk.entity.Base;
 import com.utovr.player.UVMediaPlayer;
 import com.utovr.player.UVPlayerCallBack;
 
@@ -24,32 +24,31 @@ import com.utovr.player.UVPlayerCallBack;
 
 public class VRManager implements UVPlayerCallBack {
     private UVMediaPlayer mMediaplayer = null;  // 媒体视频播放器
-    private final Controller mController;
+    private BaseController mController;
 
     private ViewGroup rlParent;
     private BroadcastReceiver networkChangeReceiver;
 
     public VRManager(Activity activity, ViewGroup parent) {
         rlParent = parent;
+        initPlayerAndController(activity);
+
+        setBreoadcast();
+    }
+
+    private void initPlayerAndController(Activity activity) {
         //添加播放器
-        RelativeLayout realParent = new RelativeLayout(parent.getContext());
+        RelativeLayout realParent = new RelativeLayout(rlParent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         realParent.setLayoutParams(params);
-        parent.addView(realParent);
-        mMediaplayer = new UVMediaPlayer(parent.getContext(), realParent,this);
+        rlParent.addView(realParent);
+        mMediaplayer = new UVMediaPlayer(rlParent.getContext(), realParent,this);
 
         //添加controller
-        mController = new Controller(parent.getContext());
+        mController = new BaseController(mMediaplayer, activity,rlParent);
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         mController.setLayoutParams(params1);
-        mController.setPlayer(mMediaplayer);
-
-        //设置外部变量
-        mController.setActivity(activity);
-        mController.setParent(rlParent);
-
-        parent.addView(mController);
-        setBreoadcast();
+        rlParent.addView(mController);
     }
 
     public UVMediaPlayer getPlayer(){
@@ -116,7 +115,7 @@ public class VRManager implements UVPlayerCallBack {
         rlParent.getContext().unregisterReceiver(networkChangeReceiver);
     }
 
-    public Controller getController(){
+    public BaseController getController(){
         return mController;
     }
 
