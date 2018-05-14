@@ -5,12 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.trs.tasdk.entity.ObjectType;
+
 import butterknife.ButterKnife;
+import cn.daily.news.analytics.Analytics;
 import daily.zjrb.com.daily_vr.R;
 
 /**
@@ -102,4 +106,6 @@ public class PrepareController extends FrameLayout {
         playerNetHint.setVisibility(VISIBLE);
         playerNetHint.setText(text);
     }
+
+
 }

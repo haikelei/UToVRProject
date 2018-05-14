@@ -82,7 +82,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     private boolean mCurrentIsLand;
     protected Activity activity;
     private int screenchange;
-    private FrameLayout placeHolder;
     ProgressController progressController;
     HintController hintController;
     PrepareController prepareController;
@@ -92,13 +91,14 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         this.player = player;
         this.activity = activity;
         this.parent = parent;
+        calcTime = new CalcTime();
         initView(activity);
         initListener();
     }
 
 
     public void initView(Context context){
-        View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
+        LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
         updatePositionTask = new UpdatePositionTask();
         //添加进度条控制器
         progressController = new ProgressController(context,player,activity);
@@ -114,8 +114,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         prepareController.setLayoutParams(params);
         addView(prepareController);
 
-        //通用ui
-        placeHolder = (FrameLayout) view.findViewById(R.id.fl_tool_place_holder);
+
     }
 
     private void initListener() {
@@ -147,7 +146,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         });
 
-        calcTime = new CalcTime();
+
         player.setNetWorkListenser(new UVNetworkListenser() {//播放过程中的网络变化
             @Override
             public void onNetworkChanged(int i) {
@@ -161,7 +160,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 }
             }
         });
-
 
         OrientationHelper orientationHelper = new OrientationHelper();
         orientationHelper.registerListener(parent.getContext(), new OrientationListener() {
@@ -203,14 +201,10 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         });
 
-        player.setToolbar(placeHolder,null,null);
-
-        //呼出进度条
-        player.setToolVisibleListener(new ma() {
+        progressController.setOnClickListener(new OnClickListener() {
             @Override
-            public void a(int i) {//0显示 8隐藏
-                if(i==0){
-                    if(prepareController.getUIState()){
+            public void onClick(View v) {
+                if(prepareController.getUIState()){
                     return;
                 }
                 if(mControllerBarTask == null){
@@ -219,7 +213,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 progressController.switchLand(mCurrentIsLand);
                 handler.removeCallbacks(mControllerBarTask);
                 handler.postDelayed(mControllerBarTask,3000);
-                }
             }
         });
 
@@ -329,7 +322,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         @Override
         public void run() {
             progressController.hideUI();
-
         }
     }
 
@@ -391,8 +383,5 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         }
     }
-
-
-
 
 }

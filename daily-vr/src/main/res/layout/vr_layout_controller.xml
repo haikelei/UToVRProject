@@ -5,10 +5,5 @@
     android:id="@+id/container"
     >
 
-    <!--播放器控制的进度条 占位-->
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/fl_tool_place_holder"/>
 
 </daily.zjrb.com.daily_vr.ui.ControllerContainer>
