@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--底部progeress bar-->
+    <ProgressBar
+        android:id="@+id/player_bottom_progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:indeterminateOnly="false"
+        android:max="1000"
+        android:maxHeight="1dp"
+        android:minHeight="1dp"
+        android:progressDrawable="@drawable/module_player_progress_bar_drawable" />
+
+    <!--竖屏controller-->
+    <include layout="@layout/vr_layout_v_controller"
+        android:id="@+id/controller_v"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        ></include>
+
+    <!--横屏controller-->
+    <include layout="@layout/vr_layout_l_controller"
+        android:id="@+id/controller_l"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        ></include>
+
+</RelativeLayout>

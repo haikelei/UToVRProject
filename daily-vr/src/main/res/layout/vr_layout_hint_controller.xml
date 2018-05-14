@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <CheckBox
+        android:button="@null"
+        android:id="@+id/player_ic_volume"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="13dp"
+        android:layout_marginTop="13dp"
+        android:background="@drawable/vr_video_toolbar_tb_volume" />
+
+    <ImageView
+        android:id="@+id/player_buffer_progress"
+        android:src="@drawable/play_loading"
+        android:layout_centerInParent="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        />
+
+</RelativeLayout>

@@ -19,6 +19,7 @@ import android.support.v4.app.FragmentActivity;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -68,40 +69,23 @@ import static android.content.Context.CONNECTIVITY_SERVICE;
 
 public class BaseController extends RelativeLayout implements UVEventListener, UVInfoListener {
 
-
-    protected SeekBar progressBar;
-    protected CheckBox buttonPlayPause;
     protected UVMediaPlayer player = null;
     protected CalcTime calcTime;
     Handler handler = new Handler();
     private boolean bufferResume = true;
-    ImageView hintBufferProgress;
-    TextView playerDuration;
-    TextView playerPosition;
-    private TextView playerLDuration;
-    private TextView playerLPosition;
-    private CheckBox buttonLPlayPause;
-    private SeekBar lProgressBar;
-    private CheckBox playerGyro;
-    private CheckBox playerScreen;
-    private ImageView retract;
-    private ImageView spread;
-    private LinearLayout lController;
-    private LinearLayout vController;
+
     protected ViewGroup parent;
     private int mLastOrientation = -100;//上一次的方向记录
     private boolean switchFromUser;
-    private CheckBox playerVolumn;
-    private LinearLayout playerStart;
     protected UVMediaType type;
     protected  String path;
-    private TextView playerNetHint;
-    private ProgressBar bottomProgressBar;
     private boolean mCurrentIsLand;
     protected Activity activity;
     private int screenchange;
-    private LinearLayout playerRestart;
     private FrameLayout placeHolder;
+    ProgressController progressController;
+    HintController hintController;
+    PrepareController prepareController;
 
     public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent){
         super(activity);
@@ -115,44 +99,53 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
     public void initView(Context context){
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
-        ButterKnife.bind(view);
         updatePositionTask = new UpdatePositionTask();
-        //竖屏相关
-        vController = (LinearLayout) view.findViewById(R.id.controller_v);
-        progressBar = (SeekBar) view.findViewById(R.id.player_seek_bar);
-        buttonPlayPause = (CheckBox) view.findViewById(R.id.player_play_pause);
-        playerDuration = (TextView) view.findViewById(R.id.player_duration);
-        playerPosition = (TextView) view.findViewById(R.id.player_position);
-        spread = (ImageView) view.findViewById(R.id.player_full_screen);
-
-        //横屏相关
-        lController = (LinearLayout) view.findViewById(R.id.controller_l);
-        playerLDuration = (TextView) view.findViewById(R.id.player_l_duration);
-        playerLPosition = (TextView) view.findViewById(R.id.player_l_position);
-        buttonLPlayPause = (CheckBox) view.findViewById(R.id.player_l_play_pause);
-        lProgressBar = (SeekBar) view.findViewById(R.id.player_l_seek_bar);
-        playerGyro = (CheckBox) view.findViewById(R.id.player_l_play_gyro);
-        playerScreen = (CheckBox) view.findViewById(R.id.player_l_play_screen);
-        retract = (ImageView) view.findViewById(R.id.player_l_small_screen);
+        //添加进度条控制器
+        progressController = new ProgressController(context,player,activity);
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        progressController.setLayoutParams(params);
+        addView(progressController);
+        //添加提示UI和声音控制器
+        hintController = new HintController(activity);
+        hintController.setLayoutParams(params);
+        addView(hintController);
+        //添加播放和重播控制器
+        prepareController = new PrepareController(activity);
+        prepareController.setLayoutParams(params);
+        addView(prepareController);
 
         //通用ui
-        hintBufferProgress = (ImageView) view.findViewById(R.id.player_buffer_progress);
-        ObjectAnimator anim = ObjectAnimator.ofFloat(hintBufferProgress, "rotation", 0f, 360f);
-        anim.setDuration(900);
-        anim.setInterpolator(new LinearInterpolator());
-        anim.setRepeatMode(ValueAnimator.RESTART);
-        anim.setRepeatCount(ValueAnimator.INFINITE);
-        anim.start();
-        playerVolumn = (CheckBox) view.findViewById(R.id.player_ic_volume);
-        playerStart = (LinearLayout) view.findViewById(R.id.ll_start);
-        playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
-        bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
-        playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
         placeHolder = (FrameLayout) view.findViewById(R.id.fl_tool_place_holder);
     }
 
     private void initListener() {
+        prepareController.setOnPrepareControllerListener(new PrepareController.OnPrepareControllerListener() {
+            @Override
+            public void onStartClicked() {
+                if(player.getCurrentPosition() != 0){//在播放过程中提示网络变化 直接播放
+                    progressController.play();
+                    return;
+                }
+                check4G();
+            }
 
+            @Override
+            public void onRestartClicked() {
+                player.replay();
+            }
+        });
+
+        progressController.setOnProgressControllerListener(new ProgressController.OnProgressControllerListener() {
+            @Override
+            public void onChangeOrientation(boolean b) {
+                changeOrientation(b);
+            }
+
+            @Override
+            public void onIsFromUserSwitch(boolean b) {
+                switchFromUser = b;
+            }
+        });
 
         calcTime = new CalcTime();
         player.setNetWorkListenser(new UVNetworkListenser() {//播放过程中的网络变化
@@ -162,16 +155,12 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
                 }else if(i == UVNetworkListenser.NETWORK_MOBILE_2G || i == UVNetworkListenser.NETWORK_MOBILE_3G ||i == UVNetworkListenser.NETWORK_MOBILE_4G){
                     if(player.isPlaying()){
-                        playerStart.setVisibility(VISIBLE);
-                        playerNetHint.setVisibility(VISIBLE);
-                        playerNetHint.setText("用流量播放");
-                        buttonPlayPause.setChecked(true);
-                        buttonLPlayPause.setChecked(true);
+                        prepareController.setNetHintText("用流量播放");
+                        progressController.initPlay();
                     }
                 }
             }
         });
-
 
 
         OrientationHelper orientationHelper = new OrientationHelper();
@@ -214,150 +203,20 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         });
 
-
         player.setToolbar(placeHolder,null,null);
-        final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
-        //调节音量
-        playerVolumn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            int currentVolume;
-
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){//静音
-                    currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-                    audioManager.setStreamMute(AudioManager.STREAM_MUSIC,true);
-                }else {
-                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume,0);
-                }
-            }
-        });
-
-        //进度条
-        progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                playerPosition.setText(calcTime.formatPosition(progress));
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                int progress = seekBar.getProgress();
-                player.seekTo(progress);
-            }
-        });
-        //暂停
-        buttonPlayPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    player.pause();
-                }else {
-                    player.play();
-                }
-            }
-        });
-
-        buttonLPlayPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    player.pause();
-                }else {
-                    player.play();
-                }
-            }
-        });
-
-        //陀螺仪
-        playerGyro.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    player.setGyroEnabled(true);
-                }else {
-                    player.setGyroEnabled(false);
-                }
-            }
-        });
-
-        //双屏
-        playerScreen.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    player.setDualScreenEnabled(true);
-                }else {
-                    player.setDualScreenEnabled(false);
-                }
-            }
-        });
-
-        //最小化
-        retract.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchFromUser = true;
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                changeOrientation(false);
-            }
-        });
-
-        //最大化
-        spread.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switchFromUser = true;
-                player.hideToolbarLater();
-                activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                changeOrientation(true);
-            }
-        });
-
-        //进入播放页面开始播放
-        playerStart.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playerStart.setVisibility(GONE);
-                if(player.getCurrentPosition() != 0){//在播放过程中提示网络变化 直接播放
-                    buttonPlayPause.setChecked(false);
-                    buttonLPlayPause.setChecked(false);
-                    return;
-                }
-                check4G();
-            }
-        });
-
-        playerRestart.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                playerRestart.setVisibility(GONE);
-                player.replay();
-            }
-        });
 
         //呼出进度条
         player.setToolVisibleListener(new ma() {
             @Override
             public void a(int i) {//0显示 8隐藏
                 if(i==0){
-                    if(playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE){
+                    if(prepareController.getUIState()){
                     return;
                 }
                 if(mControllerBarTask == null){
                     mControllerBarTask = new ControllerBarTask();
                 }
-                if(mCurrentIsLand){
-                    lController.setVisibility(VISIBLE);
-                    bottomProgressBar.setVisibility(GONE);
-                }else {
-                    vController.setVisibility(VISIBLE);
-                    bottomProgressBar.setVisibility(GONE);
-                }
+                progressController.switchLand(mCurrentIsLand);
                 handler.removeCallbacks(mControllerBarTask);
                 handler.postDelayed(mControllerBarTask,3000);
                 }
@@ -372,12 +231,13 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         if (SettingManager.getInstance().isAutoPlayVideoWithWifi() && NetUtils.isWifi()){//自动播放
             player.setSource(type,path);
         }else {
-            playerStart.setVisibility(VISIBLE);
+            prepareController.showStartView();
+
         }
     }
 
     private void check4G() {
-        if(NetUtils.isMobile() && playerNetHint.getVisibility() == VISIBLE && (playerNetHint.getText().toString().equals("用流量播放") || playerNetHint.getText().toString().equals("已切换至wifi"))){//用流量提醒的状态下点击播放 直接播放
+        if(NetUtils.isMobile() && prepareController.shoudPlay()){//用流量提醒的状态下点击播放 直接播放
             player.setSource(type,path);
             return;
         }
@@ -386,12 +246,9 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             return;
         }
         if(NetUtils.isMobile()){
-            playerStart.setVisibility(VISIBLE);
-            playerNetHint.setVisibility(VISIBLE);
-            playerNetHint.setText("用流量播放");
+            prepareController.setNetHintText("用流量播放");
         }
     }
-
 
     @Override
     public void onStateChanged(int playbackState) {
@@ -403,14 +260,14 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 case UVMediaPlayer.STATE_BUFFERING:
                     if (player != null && player.isPlaying()) {
                         bufferResume = true;
-                        hintBufferProgress.setVisibility(VISIBLE);
+                        hintController.showBuffering(true);
                     }
                     break;
                 case UVMediaPlayer.STATE_READY:
                     // 设置时间和进度条
                     if (bufferResume) {
                         bufferResume = false;
-                        hintBufferProgress.setVisibility(GONE);
+                        hintController.showBuffering(false);
                     }
                     break;
                 case UVMediaPlayer.STATE_ENDED:
@@ -426,7 +283,8 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
     //播放结束
     private void showEndView() {
-        playerRestart.setVisibility(VISIBLE);
+        prepareController.showEnd();
+
     }
 
     @Override
@@ -458,7 +316,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     UpdatePositionTask updatePositionTask;
     public void updateCurrentPosition(final long position) {
         calcTime.calcTime(player);
-        final int bufferProgress = calcTime.calcSecondaryProgress(progressBar.getMax());
+        final int bufferProgress = calcTime.calcSecondaryProgress(progressController.getMax());
         updatePositionTask.setPosition((int) position);
         updatePositionTask.setBufferProgress(bufferProgress);
         handler.post(updatePositionTask);
@@ -470,9 +328,8 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
         @Override
         public void run() {
-            vController.setVisibility(GONE);
-            lController.setVisibility(GONE);
-            bottomProgressBar.setVisibility(VISIBLE);
+            progressController.hideUI();
+
         }
     }
 
@@ -492,32 +349,14 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
         @Override
         public void run() {
-            //竖屏相关
-            progressBar.setMax((int) player.getDuration());
-            progressBar.setProgress( position);
-            progressBar.setSecondaryProgress(bufferProgress);
-            playerDuration.setText(calcTime.formatDuration());
-            playerPosition.setText(calcTime.formatPosition());
-            //横屏相关
-            lProgressBar.setMax((int) player.getDuration());
-            lProgressBar.setProgress(position);
-            lProgressBar.setSecondaryProgress(bufferProgress);
-            playerLDuration.setText(calcTime.formatDuration());
-            playerLPosition.setText(calcTime.formatPosition());
-
-            //bottom progress
-            bottomProgressBar.setMax((int) player.getDuration());
-            bottomProgressBar.setProgress(position);
-
+            progressController.updatePosition(player.getDuration(),position,bufferProgress,calcTime.formatDuration(),calcTime.formatPosition());
         }
     }
 
     public void changeOrientation(boolean isLandscape) {
         if(mCurrentIsLand != isLandscape){//屏幕横竖屏发生变化
             mCurrentIsLand = isLandscape;
-            vController.setVisibility(GONE);
-            lController.setVisibility(GONE);
-            bottomProgressBar.setVisibility(VISIBLE);
+            progressController.hideUI();
             if (isLandscape) {
 //            切换横屏
                 activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
@@ -541,18 +380,14 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
     }
 
-
-
-
     //播放前的网络变化监听
     public void onNetWorkChanged() {
         if(NetUtils.isMobile()){
-            playerNetHint.setVisibility(VISIBLE);
-            playerNetHint.setText("用流量播放");
+            prepareController.setNetHintText("用流量播放");
         }
-        if(playerNetHint.getVisibility() == VISIBLE){
+        if(prepareController.isNetHintShowing()){
             if(NetUtils.isWifi()){
-                playerNetHint.setText("已切换至wifi");
+                prepareController.setNetHintText("已切换至wifi");
             }
         }
     }

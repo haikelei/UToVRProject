@@ -3,79 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/container"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    >
 
+    <!--播放器控制的进度条 占位-->
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/fl_tool_place_holder"></FrameLayout>
-    <!--竖屏controller-->
-    <include layout="@layout/vr_layout_v_controller"
-        android:id="@+id/controller_v"
-        android:visibility="gone"
-        android:gravity="center_vertical"
-        ></include>
-
-    <!--横屏controller-->
-    <include layout="@layout/vr_layout_l_controller"
-        android:id="@+id/controller_l"
-        android:visibility="gone"
-        android:gravity="center_vertical"
-        ></include>
-
-    <CheckBox
-        android:button="@null"
-        android:id="@+id/player_ic_volume"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="13dp"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/vr_video_toolbar_tb_volume" />
-
-    <ProgressBar
-        android:id="@+id/player_bottom_progress_bar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@null"
-        android:indeterminateOnly="false"
-        android:max="1000"
-        android:maxHeight="1dp"
-        android:minHeight="1dp"
-        android:progressDrawable="@drawable/module_player_progress_bar_drawable" />
-
-    <!--<ProgressBar-->
-        <!--android:id="@+id/player_buffer_progress"-->
-        <!--style="?android:attr/progressBarStyleLarge"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:indeterminateDrawable="@drawable/module_player_buffer_progress"-->
-        <!--android:indeterminateDuration="2000"-->
-        <!--android:minHeight="50dp"-->
-        <!--android:minWidth="50dp"-->
-        <!--android:visibility="gone" />-->
-    <ImageView
-        android:id="@+id/player_buffer_progress"
-        android:src="@drawable/play_loading"
-        android:layout_centerInParent="true"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:visibility="gone"
-        />
-
-
-    <!--播放-->
-    <include layout="@layout/vr_layout_start_area"></include>
-
-    <!--重播-->
-    <include layout="@layout/vr_layout_restart_area"
-        android:visibility="gone"
-        ></include>
-
-
+        android:id="@+id/fl_tool_place_holder"/>
 
 </daily.zjrb.com.daily_vr.ui.ControllerContainer>
