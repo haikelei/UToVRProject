@@ -85,6 +85,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     ProgressController progressController;
     HintController hintController;
     PrepareController prepareController;
+    private ProgressBar bottomProgressBar;
 
     public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent){
         super(activity);
@@ -98,7 +99,9 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
 
     public void initView(Context context){
-        LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
+        View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
+        //全局
+        bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
         updatePositionTask = new UpdatePositionTask();
         //添加进度条控制器
         progressController = new ProgressController(context,player,activity);
@@ -113,14 +116,16 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         prepareController = new PrepareController(activity);
         prepareController.setLayoutParams(params);
         addView(prepareController);
-
-
     }
+
+
 
     private void initListener() {
         prepareController.setOnPrepareControllerListener(new PrepareController.OnPrepareControllerListener() {
             @Override
             public void onStartClicked() {
+                player.setToolbar(progressController,null,null);
+                player.setToolbarShow(false);
                 if(player.getCurrentPosition() != 0){//在播放过程中提示网络变化 直接播放
                     progressController.play();
                     return;
@@ -130,7 +135,14 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
             @Override
             public void onRestartClicked() {
+                player.setToolbar(progressController,null,null);
+                player.setToolbarShow(false);
                 player.replay();
+            }
+
+            @Override
+            public void onShowEndView() {
+                player.setToolbar(null,null,null);
             }
         });
 
@@ -200,19 +212,19 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 }
             }
         });
-
-        progressController.setOnClickListener(new OnClickListener() {
+        
+        player.setToolVisibleListener(new ma() {
             @Override
-            public void onClick(View v) {
-                if(prepareController.getUIState()){
-                    return;
+            public void a(int i) {//0显示  8隐藏
+                if (i == 0){
+                    if(prepareController.getUIState()){
+                        return;
+                    }
+                    progressController.switchLand(mCurrentIsLand);
+                    bottomProgressBar.setVisibility(GONE);
+                }else if(i == 8){
+                    bottomProgressBar.setVisibility(VISIBLE);
                 }
-                if(mControllerBarTask == null){
-                    mControllerBarTask = new ControllerBarTask();
-                }
-                progressController.switchLand(mCurrentIsLand);
-                handler.removeCallbacks(mControllerBarTask);
-                handler.postDelayed(mControllerBarTask,3000);
             }
         });
 
@@ -315,15 +327,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         handler.post(updatePositionTask);
     }
 
-    //隐藏进度条
-    public  ControllerBarTask mControllerBarTask;
-    class ControllerBarTask implements  Runnable{
 
-        @Override
-        public void run() {
-            progressController.hideUI();
-        }
-    }
 
 //    更新ui的任务
     class UpdatePositionTask implements Runnable{
@@ -342,13 +346,15 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         @Override
         public void run() {
             progressController.updatePosition(player.getDuration(),position,bufferProgress,calcTime.formatDuration(),calcTime.formatPosition());
+            //bottom progress
+            bottomProgressBar.setMax((int) player.getDuration());
+            bottomProgressBar.setProgress(position);
         }
     }
 
     public void changeOrientation(boolean isLandscape) {
         if(mCurrentIsLand != isLandscape){//屏幕横竖屏发生变化
             mCurrentIsLand = isLandscape;
-            progressController.hideUI();
             if (isLandscape) {
 //            切换横屏
                 activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);

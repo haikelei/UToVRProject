@@ -36,8 +36,8 @@
             android:minHeight="1dp"
             android:paddingEnd="6dp"
             android:paddingStart="6dp"
-            android:progressDrawable="@drawable/module_player_seek_bar_drawable"
-            android:thumb="@drawable/module_player_seek_bar_thumb" />
+            android:progressDrawable="@drawable/vr_module_player_seek_bar_drawable"
+            android:thumb="@drawable/vr_module_player_seek_bar_thumb" />
 <LinearLayout
     android:orientation="horizontal"
     android:layout_width="wrap_content"
@@ -100,7 +100,7 @@
         android:layout_width="34dp"
         android:layout_height="match_parent"
         android:scaleType="center"
-        android:src="@mipmap/module_player_controls_retract" />
+        android:src="@mipmap/vr_module_player_controls_retract" />
 
 </LinearLayout>
 

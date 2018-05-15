@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.support.annotation.NonNull;
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.CheckBox;
@@ -44,7 +45,8 @@ public class ProgressController extends RelativeLayout {
     private ImageView spread;
     private  UVMediaPlayer player;
     private Activity activity;
-    private ProgressBar bottomProgressBar;
+
+
 
     public void play() {
         buttonPlayPause.setChecked(false);
@@ -57,14 +59,9 @@ public class ProgressController extends RelativeLayout {
         }else {
             vController.setVisibility(VISIBLE);
         }
-        bottomProgressBar.setVisibility(GONE);
     }
 
-    public void hideUI() {
-        vController.setVisibility(GONE);
-        lController.setVisibility(GONE);
-        bottomProgressBar.setVisibility(VISIBLE);
-    }
+
 
     public void updatePosition(long duration, int position, int bufferProgress, String sDuration, String sPosition) {
         //竖屏相关
@@ -79,9 +76,7 @@ public class ProgressController extends RelativeLayout {
         lProgressBar.setSecondaryProgress(bufferProgress);
         playerLDuration.setText(sDuration);
         playerLPosition.setText(sPosition);
-        //bottom progress
-        bottomProgressBar.setMax((int) player.getDuration());
-        bottomProgressBar.setProgress(position);
+
 
     }
 
@@ -100,13 +95,20 @@ public class ProgressController extends RelativeLayout {
 
 
     public ProgressController(@NonNull Context context, UVMediaPlayer player, Activity activity) {
-        super(context);
+        this(context,null);
         this.player = player;
         this.activity = activity;
         initView(context);
         initListener();
     }
 
+    public ProgressController(Context context, AttributeSet attrs) {
+        this(context, attrs,0);
+    }
+
+    public ProgressController(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
 
     private void initView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_progress_controller,this,true);
@@ -129,9 +131,6 @@ public class ProgressController extends RelativeLayout {
         playerScreen = (CheckBox) view.findViewById(R.id.player_l_play_screen);
         retract = (ImageView) view.findViewById(R.id.player_l_small_screen);
 
-
-        //全局
-        bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
 
     }
 

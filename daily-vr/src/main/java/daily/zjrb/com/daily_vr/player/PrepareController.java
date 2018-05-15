@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.aliya.uimode.factory.UiModeInflaterFactory;
 import com.trs.tasdk.entity.ObjectType;
 
 import butterknife.ButterKnife;
@@ -43,6 +44,7 @@ public class PrepareController extends FrameLayout {
 
     public void showEnd() {
         playerRestart.setVisibility(VISIBLE);
+        mListener.onShowEndView();
     }
 
     public boolean isNetHintShowing() {
@@ -52,6 +54,7 @@ public class PrepareController extends FrameLayout {
     interface OnPrepareControllerListener{
         void onStartClicked();
         void onRestartClicked();
+        void onShowEndView();
     }
     private OnPrepareControllerListener mListener;
     public void setOnPrepareControllerListener(OnPrepareControllerListener mListener){

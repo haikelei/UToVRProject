@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<daily.zjrb.com.daily_vr.ui.ControllerContainer xmlns:android="http://schemas.android.com/apk/res/android"
+<daily.zjrb.com.daily_vr.ui.ControllerContainer
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/container"
-    >
-
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/container">
+    <!--底部progeress bar-->
+    <ProgressBar
+        android:id="@+id/player_bottom_progress_bar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@null"
+        android:indeterminateOnly="false"
+        android:max="1000"
+        android:maxHeight="1dp"
+        android:minHeight="1dp"
+        android:progressDrawable="@drawable/vr_module_player_progress_bar_drawable" />
 
 </daily.zjrb.com.daily_vr.ui.ControllerContainer>

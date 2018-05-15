@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- 音量按键 -->
     <item android:state_checked="true"
-        android:drawable="@drawable/module_player_controls_ic_mute" /> <!-- 如果是true，运行时显示的是 android:textOn 的值 -->
+        android:drawable="@drawable/vr_module_player_controls_ic_mute" /> <!-- 如果是true，运行时显示的是 android:textOn 的值 -->
     <item android:state_checked="false" 
-        android:drawable="@drawable/module_player_controls_ic_volume" /> <!-- 如果是false，运行是显示的是 android:textOff 的值 -->
+        android:drawable="@drawable/vr_module_player_controls_ic_volume" /> <!-- 如果是false，运行是显示的是 android:textOff 的值 -->
 </selector>
