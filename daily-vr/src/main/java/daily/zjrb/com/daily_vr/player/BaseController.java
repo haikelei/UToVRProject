@@ -232,8 +232,10 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                     }
                     progressController.switchLand(mCurrentIsLand);
                     bottomProgressBar.setVisibility(GONE);
+                    hintController.showVolume(true);
                 }else if(i == 8){
                     bottomProgressBar.setVisibility(VISIBLE);
+                    hintController.showVolume(false);
                 }
             }
         });
@@ -247,7 +249,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             player.setSource(type,path);
         }else {
             prepareController.showStartView();
-
         }
     }
 
@@ -262,6 +263,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         }
         if(NetUtils.isMobile() && !prepareController.hasShowedNetHint){
             prepareController.setNetHintText("用流量播放");
+            return;
         }
     }
 
@@ -341,9 +343,12 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         handler.post(updatePositionTask);
     }
 
+    public void volumnChanged() {
+        hintController.volumeChanged();
+    }
 
 
-//    更新ui的任务
+    //    更新ui的任务
     class UpdatePositionTask implements Runnable{
 
         public void setPosition(int position) {
@@ -394,11 +399,11 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
     //播放前的网络变化监听
     public void onNetWorkChanged() {
-        if(NetUtils.isMobile()){
+        if(NetUtils.isMobile() && !player.isPlaying()){
             prepareController.setNetHintText("用流量播放");
         }
         if(prepareController.isNetHintShowing()){
-            if(NetUtils.isWifi()){
+            if(NetUtils.isWifi() && !player.isPlaying()){
                 prepareController.setNetHintText("已切换至wifi");
             }
         }

@@ -5,8 +5,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.database.ContentObserver;
+import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
+import android.os.Handler;
 import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
@@ -31,6 +34,7 @@ public class VRManager implements UVPlayerCallBack {
     private ViewGroup rlParent;
     private BroadcastReceiver networkChangeReceiver;
     private AnalyCallBack analyCallBack;
+    private SettingsContentObserver settingsContentObserver;
 
     public VRManager(Activity activity, ViewGroup parent,AnalyCallBack analyCallBack) {
         rlParent = parent;
@@ -38,8 +42,13 @@ public class VRManager implements UVPlayerCallBack {
         initPlayerAndController(activity);
 
         setBreoadcast();
+        setVolumnListener();
     }
 
+    private void setVolumnListener() {
+        settingsContentObserver = new SettingsContentObserver(new Handler());
+        rlParent.getContext().getContentResolver().registerContentObserver(android.provider.Settings.System.CONTENT_URI, true, settingsContentObserver);
+    }
 
 
     private void initPlayerAndController(Activity activity) {
@@ -119,6 +128,7 @@ public class VRManager implements UVPlayerCallBack {
             mMediaplayer = null;
         }
         rlParent.getContext().unregisterReceiver(networkChangeReceiver);
+        rlParent.getContext().getContentResolver().unregisterContentObserver(settingsContentObserver);
     }
 
     public BaseController getController(){
@@ -139,12 +149,43 @@ public class VRManager implements UVPlayerCallBack {
     }
 
 
+    //网络监听
     public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             mController.onNetWorkChanged();
         }
     }
+
+
+    //音量监听
+    public class SettingsContentObserver extends ContentObserver {
+
+        /**
+         * Creates a content observer.
+         *
+         * @param handler The handler to run {@link #onChange} on, or null if none.
+         */
+        public SettingsContentObserver(android.os.Handler handler) {
+            super(handler);
+        }
+
+
+
+        @Override
+        public boolean deliverSelfNotifications() {
+            return super.deliverSelfNotifications();
+        }
+
+        @Override
+        public void onChange(boolean selfChange) {
+            super.onChange(selfChange);
+            mController.volumnChanged();
+        }
+
+
+    }
+
 
 
 }

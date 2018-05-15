@@ -4,7 +4,10 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Context;
+import android.database.ContentObserver;
 import android.media.AudioManager;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -37,22 +40,37 @@ public class HintController extends RelativeLayout{
     private AnalyCallBack analyCallBack;
     private LinearLayout guideArea;
     public boolean hasGuided;
-    android.os.Handler handler = new android.os.Handler();
+    int currentVolume;
+    android.os.Handler mHandler = new android.os.Handler();
+    private AudioManager audioManager;
 
 
     public HintController(Activity activity, AnalyCallBack analyCallBack) {
         super(activity);
         this.activity = activity;
         this.analyCallBack = analyCallBack;
+        audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
         initView(activity);
         initListener();
     }
 
+    public void volumeChanged() {
+        AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
+        currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        Log.e("lujialei","声音==="+currentVolume);
+        if(currentVolume ==0){
+            playerVolumn.setChecked(true);
+        }else {
+            playerVolumn.setChecked(false);
+        }
+    }
+
+
+
     private void initListener() {
-        final AudioManager audioManager = (AudioManager) activity.getSystemService(Context.AUDIO_SERVICE);
         //调节音量
         playerVolumn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            int currentVolume;
+
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -103,7 +121,7 @@ public class HintController extends RelativeLayout{
     public void showGuide(){
         hasGuided = true;
         guideArea.setVisibility(VISIBLE);
-        handler.postDelayed(new Runnable() {
+        mHandler.postDelayed(new Runnable() {
                @Override
                public void run() {
                    guideArea.setVisibility(GONE);
@@ -114,5 +132,15 @@ public class HintController extends RelativeLayout{
 
     public void hideGuide() {
         guideArea.setVisibility(GONE);
+    }
+
+
+    public void showVolume(boolean b) {
+        if(b){
+            playerVolumn.setVisibility(VISIBLE);
+        }else {
+            playerVolumn.setVisibility(GONE);
+        }
+
     }
 }
