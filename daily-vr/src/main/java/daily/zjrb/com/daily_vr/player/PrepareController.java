@@ -29,6 +29,7 @@ public class PrepareController extends FrameLayout {
     private TextView playerNetHint;
     private LinearLayout playerStart;
     private LinearLayout playerRestart;
+    public boolean hasShowedNetHint;
 
     public boolean getUIState() {
         return playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE;
@@ -108,6 +109,9 @@ public class PrepareController extends FrameLayout {
         playerStart.setVisibility(VISIBLE);
         playerNetHint.setVisibility(VISIBLE);
         playerNetHint.setText(text);
+        if(text.equals("用流量播放")){
+            hasShowedNetHint = true;
+        }
     }
 
 

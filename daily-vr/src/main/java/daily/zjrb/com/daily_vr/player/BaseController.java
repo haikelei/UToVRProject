@@ -39,6 +39,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.aliya.player.gravity.OrientationHelper;
 import com.aliya.player.gravity.OrientationListener;
@@ -89,15 +90,12 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     private ProgressBar bottomProgressBar;
     private AnalyCallBack mAnalyCallBack;
 
-    public void setAnalyCallBack(AnalyCallBack mAnalyCallBack){
-        this.mAnalyCallBack = mAnalyCallBack;
-    }
-
-    public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent){
+    public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent,AnalyCallBack analyCallBack){
         super(activity);
         this.player = player;
         this.activity = activity;
         this.parent = parent;
+        this.mAnalyCallBack = analyCallBack;
         calcTime = new CalcTime();
         initView(activity);
         initListener();
@@ -144,6 +142,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 player.setToolbar(progressController,null,null);
                 player.setToolbarShow(false);
                 player.replay();
+                check4G();
             }
 
             @Override
@@ -172,8 +171,13 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
                 }else if(i == UVNetworkListenser.NETWORK_MOBILE_2G || i == UVNetworkListenser.NETWORK_MOBILE_3G ||i == UVNetworkListenser.NETWORK_MOBILE_4G){
                     if(player.isPlaying()){
-                        prepareController.setNetHintText("用流量播放");
-                        progressController.initPlay();
+                        if(!prepareController.hasShowedNetHint){//还没展示过流量播放
+                            prepareController.setNetHintText("用流量播放");
+                            progressController.initPlay();
+                        }else {//已经展示过流量播放
+                            Toast.makeText(getContext(),"正在使用移动流量播放",Toast.LENGTH_SHORT).show();
+                        }
+
                     }
                 }
             }
@@ -256,7 +260,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             player.setSource(type,path);
             return;
         }
-        if(NetUtils.isMobile()){
+        if(NetUtils.isMobile() && !prepareController.hasShowedNetHint){
             prepareController.setNetHintText("用流量播放");
         }
     }
@@ -272,6 +276,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                     if (player != null && player.isPlaying()) {
                         bufferResume = true;
                         hintController.showBuffering(true);
+                        hintController.hideGuide();
                     }
                     break;
                 case UVMediaPlayer.STATE_READY:
@@ -279,6 +284,9 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                     if (bufferResume) {
                         bufferResume = false;
                         hintController.showBuffering(false);
+                        if(!hintController.hasGuided){//还没展示过引导
+                            hintController.showGuide();
+                        }
                     }
                     break;
                 case UVMediaPlayer.STATE_ENDED:

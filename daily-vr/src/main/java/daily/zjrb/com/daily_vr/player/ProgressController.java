@@ -59,8 +59,10 @@ public class ProgressController extends RelativeLayout {
     public void switchLand(boolean mCurrentIsLand) {
         if(mCurrentIsLand){
             lController.setVisibility(VISIBLE);
+            vController.setVisibility(GONE);
         }else {
             vController.setVisibility(VISIBLE);
+            lController.setVisibility(GONE);
         }
     }
 
@@ -146,15 +148,17 @@ public class ProgressController extends RelativeLayout {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 playerPosition.setText( Utils.formatTime(progress));
+
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-
+                player.cancelHideToolbar();
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
+                player.hideToolbarLater();
                 int progress = seekBar.getProgress();
                 player.seekTo(progress);
             }

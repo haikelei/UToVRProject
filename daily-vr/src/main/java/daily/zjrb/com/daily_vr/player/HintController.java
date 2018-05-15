@@ -6,12 +6,19 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+
+import java.util.PriorityQueue;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.R;
@@ -28,8 +35,9 @@ public class HintController extends RelativeLayout{
     private ImageView hintBufferProgress;
     private Activity activity;
     private AnalyCallBack analyCallBack;
-
-
+    private LinearLayout guideArea;
+    public boolean hasGuided;
+    android.os.Handler handler = new android.os.Handler();
 
 
     public HintController(Activity activity, AnalyCallBack analyCallBack) {
@@ -59,6 +67,15 @@ public class HintController extends RelativeLayout{
             }
         });
 
+        guideArea.setOnTouchListener(new OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                guideArea.setVisibility(GONE);
+                return false;
+            }
+        });
+
+
 
     }
 
@@ -66,6 +83,7 @@ public class HintController extends RelativeLayout{
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_hint_controller,this,true);
         playerVolumn = (CheckBox) view.findViewById(R.id.player_ic_volume);
         hintBufferProgress = (ImageView) view.findViewById(R.id.player_buffer_progress);
+        guideArea = (LinearLayout) view.findViewById(R.id.ll_vr_guide);
         ObjectAnimator anim = ObjectAnimator.ofFloat(hintBufferProgress, "rotation", 0f, 360f);
         anim.setDuration(900);
         anim.setInterpolator(new LinearInterpolator());
@@ -76,5 +94,25 @@ public class HintController extends RelativeLayout{
 
     public void showBuffering(boolean visiable) {
         hintBufferProgress.setVisibility(visiable?VISIBLE:GONE);
+    }
+
+    public boolean isGUideShowing(){
+        return guideArea.getVisibility() == VISIBLE;
+    }
+
+    public void showGuide(){
+        hasGuided = true;
+        guideArea.setVisibility(VISIBLE);
+        handler.postDelayed(new Runnable() {
+               @Override
+               public void run() {
+                   guideArea.setVisibility(GONE);
+               }
+        },3000);
+
+    }
+
+    public void hideGuide() {
+        guideArea.setVisibility(GONE);
     }
 }

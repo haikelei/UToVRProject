@@ -44,10 +44,7 @@ public class VRFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         //初始化播放器
         rlParent = (RelativeLayout) view.findViewById(R.id.activity_rlParent);
-        vrManager = new VRManager(getActivity(), rlParent);
-        vrManager.changeOrientation(false);
-        vrManager.getController().setSource(UVMediaType.UVMEDIA_TYPE_M3U8, Path);
-        vrManager.setAnalyCallBack(new AnalyCallBack() {
+        AnalyCallBack analyCallBack = new AnalyCallBack() {
             @Override
             public void onStart() {
 
@@ -97,7 +94,11 @@ public class VRFragment extends Fragment {
             public void closeDoubelScreen() {
 
             }
-        });
+        };
+        vrManager = new VRManager(getActivity(), rlParent,analyCallBack);
+        vrManager.changeOrientation(false);
+        vrManager.getController().setSource(UVMediaType.UVMEDIA_TYPE_M3U8, Path);
+
     }
 
 

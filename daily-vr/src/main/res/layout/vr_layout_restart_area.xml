@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="?attr/vr_play"
-            app:iv_maskColor="@color/module_detail_tc_white_night" />
+            app:iv_maskColor="@color/vr_module_detail_tc_white_night" />
 
     </LinearLayout>
     <TextView
