@@ -53,6 +53,7 @@ import com.zjrb.core.utils.NetUtils;
 import com.zjrb.core.utils.SettingManager;
 
 import butterknife.ButterKnife;
+import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.CalcTime;
 import daily.zjrb.com.daily_vr.R;
 import daily.zjrb.com.daily_vr.Utils;
@@ -86,6 +87,11 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     HintController hintController;
     PrepareController prepareController;
     private ProgressBar bottomProgressBar;
+    private AnalyCallBack mAnalyCallBack;
+
+    public void setAnalyCallBack(AnalyCallBack mAnalyCallBack){
+        this.mAnalyCallBack = mAnalyCallBack;
+    }
 
     public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent){
         super(activity);
@@ -104,12 +110,12 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
         updatePositionTask = new UpdatePositionTask();
         //添加进度条控制器
-        progressController = new ProgressController(context,player,activity);
+        progressController = new ProgressController(context,player,activity,mAnalyCallBack);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
         progressController.setLayoutParams(params);
         addView(progressController);
         //添加提示UI和声音控制器
-        hintController = new HintController(activity);
+        hintController = new HintController(activity,mAnalyCallBack);
         hintController.setLayoutParams(params);
         addView(hintController);
         //添加播放和重播控制器
@@ -212,7 +218,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 }
             }
         });
-        
+
         player.setToolVisibleListener(new ma() {
             @Override
             public void a(int i) {//0显示  8隐藏

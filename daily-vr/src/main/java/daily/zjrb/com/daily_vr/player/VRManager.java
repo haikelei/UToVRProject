@@ -15,6 +15,8 @@ import com.trs.tasdk.entity.Base;
 import com.utovr.player.UVMediaPlayer;
 import com.utovr.player.UVPlayerCallBack;
 
+import daily.zjrb.com.daily_vr.AnalyCallBack;
+
 /**
  * @author: lujialei
  * @date: 2018/4/24
@@ -35,6 +37,12 @@ public class VRManager implements UVPlayerCallBack {
 
         setBreoadcast();
     }
+
+
+    public void setAnalyCallBack(AnalyCallBack analyCallBack){
+        mController.setAnalyCallBack(analyCallBack);
+    }
+
 
     private void initPlayerAndController(Activity activity) {
         //添加播放器

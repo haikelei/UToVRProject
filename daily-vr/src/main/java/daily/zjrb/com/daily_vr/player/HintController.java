@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.R;
 
 /**
@@ -26,13 +27,15 @@ public class HintController extends RelativeLayout{
     private CheckBox playerVolumn;
     private ImageView hintBufferProgress;
     private Activity activity;
+    private AnalyCallBack analyCallBack;
 
 
 
 
-    public HintController(Activity activity) {
+    public HintController(Activity activity, AnalyCallBack analyCallBack) {
         super(activity);
         this.activity = activity;
+        this.analyCallBack = analyCallBack;
         initView(activity);
         initListener();
     }
@@ -48,8 +51,10 @@ public class HintController extends RelativeLayout{
                 if(isChecked){//静音
                     currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
                     audioManager.setStreamMute(AudioManager.STREAM_MUSIC,true);
+                    analyCallBack.mute();
                 }else {
                     audioManager.setStreamVolume(AudioManager.STREAM_MUSIC,currentVolume,0);
+                    analyCallBack.openVolumn();
                 }
             }
         });

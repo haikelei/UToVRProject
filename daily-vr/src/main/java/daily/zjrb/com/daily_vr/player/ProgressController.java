@@ -17,6 +17,8 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 import com.utovr.player.UVMediaPlayer;
+
+import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.R;
 import daily.zjrb.com.daily_vr.Utils;
 
@@ -45,6 +47,7 @@ public class ProgressController extends RelativeLayout {
     private ImageView spread;
     private  UVMediaPlayer player;
     private Activity activity;
+    AnalyCallBack analyCallBack;
 
 
 
@@ -94,10 +97,11 @@ public class ProgressController extends RelativeLayout {
     }
 
 
-    public ProgressController(@NonNull Context context, UVMediaPlayer player, Activity activity) {
+    public ProgressController(@NonNull Context context, UVMediaPlayer player, Activity activity, AnalyCallBack analyCallBack) {
         this(context,null);
         this.player = player;
         this.activity = activity;
+        this.analyCallBack = analyCallBack;
         initView(context);
         initListener();
     }
@@ -161,8 +165,10 @@ public class ProgressController extends RelativeLayout {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     player.pause();
+                    analyCallBack.onPause();
                 }else {
                     player.play();
+                    analyCallBack.onStart();
                 }
             }
         });
@@ -172,8 +178,10 @@ public class ProgressController extends RelativeLayout {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     player.pause();
+                    analyCallBack.onPause();
                 }else {
                     player.play();
+                    analyCallBack.onStart();
                 }
             }
         });
@@ -184,8 +192,10 @@ public class ProgressController extends RelativeLayout {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     player.setGyroEnabled(true);
+                    analyCallBack.openGyroscope();
                 }else {
                     player.setGyroEnabled(false);
+                    analyCallBack.closeGyroscope();
                 }
             }
         });
@@ -196,8 +206,10 @@ public class ProgressController extends RelativeLayout {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if(isChecked){
                     player.setDualScreenEnabled(true);
+                    analyCallBack.openDoubelScreen();
                 }else {
                     player.setDualScreenEnabled(false);
+                    analyCallBack.closeDoubelScreen();
                 }
             }
         });
@@ -209,6 +221,7 @@ public class ProgressController extends RelativeLayout {
                 mListener.onIsFromUserSwitch(true);
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 mListener.onChangeOrientation(false);
+                analyCallBack.smallScreen();
             }
         });
 
@@ -220,6 +233,7 @@ public class ProgressController extends RelativeLayout {
                 player.hideToolbarLater();
                 activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                 mListener.onChangeOrientation(true);
+                analyCallBack.onFullScreen();
             }
         });
     }

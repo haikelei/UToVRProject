@@ -47,6 +47,57 @@ public class VRFragment extends Fragment {
         vrManager = new VRManager(getActivity(), rlParent);
         vrManager.changeOrientation(false);
         vrManager.getController().setSource(UVMediaType.UVMEDIA_TYPE_M3U8, Path);
+        vrManager.setAnalyCallBack(new AnalyCallBack() {
+            @Override
+            public void onStart() {
+
+            }
+
+            @Override
+            public void onPause() {
+
+            }
+
+            @Override
+            public void onFullScreen() {
+
+            }
+
+            @Override
+            public void smallScreen() {
+
+            }
+
+            @Override
+            public void openVolumn() {
+
+            }
+
+            @Override
+            public void mute() {
+
+            }
+
+            @Override
+            public void openGyroscope() {
+
+            }
+
+            @Override
+            public void closeGyroscope() {
+
+            }
+
+            @Override
+            public void openDoubelScreen() {
+
+            }
+
+            @Override
+            public void closeDoubelScreen() {
+
+            }
+        });
     }
 
 
