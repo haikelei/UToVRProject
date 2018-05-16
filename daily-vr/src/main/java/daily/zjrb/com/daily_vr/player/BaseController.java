@@ -58,6 +58,7 @@ import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.CalcTime;
 import daily.zjrb.com.daily_vr.R;
 import daily.zjrb.com.daily_vr.Utils;
+import daily.zjrb.com.daily_vr.VrSource;
 import daily.zjrb.com.daily_vr.ui.ControllerContainer;
 
 import static android.content.Context.CONNECTIVITY_SERVICE;
@@ -79,8 +80,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     protected ViewGroup parent;
     private int mLastOrientation = -100;//上一次的方向记录
     private boolean switchFromUser;
-    protected UVMediaType type;
-    protected  String path;
     private boolean mCurrentIsLand;
     protected Activity activity;
     private int screenchange;
@@ -89,20 +88,31 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     PrepareController prepareController;
     private ProgressBar bottomProgressBar;
     private AnalyCallBack mAnalyCallBack;
+    private VrSource mVrSource;
 
-    public BaseController(UVMediaPlayer player, Activity activity, ViewGroup parent,AnalyCallBack analyCallBack){
+    public BaseController(VrSource source,UVMediaPlayer player, Activity activity, ViewGroup parent, AnalyCallBack analyCallBack){
         super(activity);
         this.player = player;
         this.activity = activity;
         this.parent = parent;
+        mVrSource = source;
         this.mAnalyCallBack = analyCallBack;
         calcTime = new CalcTime();
-        initView(activity);
+        initView(source,activity);
         initListener();
+        initPlayer();
+    }
+
+    private void initPlayer() {
+        if (SettingManager.getInstance().isAutoPlayVideoWithWifi() && NetUtils.isWifi()){//自动播放
+            player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+        }else {
+            prepareController.showStartView();
+        }
     }
 
 
-    public void initView(Context context){
+    public void initView(VrSource source,Context context){
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_controller, this, true);
         //全局
         bottomProgressBar = (ProgressBar) view.findViewById(R.id.player_bottom_progress_bar);
@@ -117,7 +127,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         hintController.setLayoutParams(params);
         addView(hintController);
         //添加播放和重播控制器
-        prepareController = new PrepareController(activity);
+        prepareController = new PrepareController(activity,source);
         prepareController.setLayoutParams(params);
         addView(prepareController);
     }
@@ -242,23 +252,15 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
     }
 
-    public void setSource(UVMediaType type, String path) {
-        this.type = type;
-        this.path = path;
-        if (SettingManager.getInstance().isAutoPlayVideoWithWifi() && NetUtils.isWifi()){//自动播放
-            player.setSource(type,path);
-        }else {
-            prepareController.showStartView();
-        }
-    }
-
     private void check4G() {
         if(NetUtils.isMobile() && prepareController.shoudPlay()){//用流量提醒的状态下点击播放 直接播放
-            player.setSource(type,path);
+            player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            prepareController.hindMaskImage();
             return;
         }
         if(NetUtils.isWifi()){//wifi情况下点击就播放
-            player.setSource(type,path);
+            player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            prepareController.hindMaskImage();
             return;
         }
         if(NetUtils.isMobile() && !prepareController.hasShowedNetHint){

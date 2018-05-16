@@ -8,20 +8,27 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aliya.uimode.factory.UiModeInflaterFactory;
+import com.google.android.exoplayer2.Format;
 import com.trs.tasdk.entity.ObjectType;
+import com.zjrb.core.common.glide.AppGlideOptions;
+import com.zjrb.core.common.glide.GlideApp;
+import com.zjrb.core.common.global.PH;
 
 import butterknife.ButterKnife;
 import cn.daily.news.analytics.Analytics;
 import daily.zjrb.com.daily_vr.R;
+import daily.zjrb.com.daily_vr.Utils;
+import daily.zjrb.com.daily_vr.VrSource;
 
 /**
  * @author: lujialei
  * @date: 2018/5/14
- * @describe:播放和重播按钮控制器
+ * @describe:播放和重播按钮控制器  播放之前准备界面控制器
  */
 
 
@@ -30,6 +37,8 @@ public class PrepareController extends FrameLayout {
     private LinearLayout playerStart;
     private LinearLayout playerRestart;
     public boolean hasShowedNetHint;
+    private TextView tvDuration;
+    private ImageView ivMask;
 
     public boolean getUIState() {
         return playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE;
@@ -64,18 +73,14 @@ public class PrepareController extends FrameLayout {
 
 
 
-    public PrepareController(@NonNull Context context) {
-        this(context,null);
-    }
-
-    public PrepareController(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
-    }
-
-    public PrepareController(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        initView(context);
+    public PrepareController(@NonNull Context context, VrSource source) {
+        super(context);
+        initView(context,source);
         initListener();
+    }
+
+    public void hindMaskImage(){
+        ivMask.setVisibility(GONE);
     }
 
     private void initListener() {
@@ -97,11 +102,22 @@ public class PrepareController extends FrameLayout {
         });
     }
 
-    private void initView(Context context) {
+    private void initView(Context context,VrSource source) {
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_prepare_controller,this,true);
         playerStart = (LinearLayout) view.findViewById(R.id.ll_start);
         playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
         playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
+        tvDuration = (TextView) view.findViewById(R.id.tv_duration);
+        if(source.getDuration()>0){
+            tvDuration.setText(Utils.duration(source.getDuration() * 1000));
+            tvDuration.setVisibility(VISIBLE);
+        }else {
+            tvDuration.setVisibility(GONE);
+        }
+
+        ivMask = (ImageView) view.findViewById(R.id.iv_mask);
+        GlideApp.with(ivMask).load(source.getPic()).placeholder(PH.zheBig()).centerCrop()
+                .apply(AppGlideOptions.bigOptions()).into(ivMask);
     }
 
 

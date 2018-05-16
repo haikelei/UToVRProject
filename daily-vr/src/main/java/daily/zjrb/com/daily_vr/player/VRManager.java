@@ -19,6 +19,7 @@ import com.utovr.player.UVMediaPlayer;
 import com.utovr.player.UVPlayerCallBack;
 
 import daily.zjrb.com.daily_vr.AnalyCallBack;
+import daily.zjrb.com.daily_vr.VrSource;
 
 /**
  * @author: lujialei
@@ -36,10 +37,10 @@ public class VRManager implements UVPlayerCallBack {
     private AnalyCallBack analyCallBack;
     private SettingsContentObserver settingsContentObserver;
 
-    public VRManager(Activity activity, ViewGroup parent,AnalyCallBack analyCallBack) {
+    public VRManager(VrSource source,Activity activity, ViewGroup parent, AnalyCallBack analyCallBack) {
         rlParent = parent;
         this.analyCallBack = analyCallBack;
-        initPlayerAndController(activity);
+        initPlayerAndController(source,activity);
 
         setBreoadcast();
         setVolumnListener();
@@ -51,7 +52,7 @@ public class VRManager implements UVPlayerCallBack {
     }
 
 
-    private void initPlayerAndController(Activity activity) {
+    private void initPlayerAndController(VrSource source,Activity activity) {
         //添加播放器
         RelativeLayout realParent = new RelativeLayout(rlParent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -60,7 +61,7 @@ public class VRManager implements UVPlayerCallBack {
         mMediaplayer = new UVMediaPlayer(rlParent.getContext(), realParent,this);
 
         //添加controller
-        mController = new BaseController(mMediaplayer, activity,rlParent,analyCallBack);
+        mController = new BaseController(source,mMediaplayer, activity,rlParent,analyCallBack);
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         mController.setLayoutParams(params1);
         rlParent.addView(mController);

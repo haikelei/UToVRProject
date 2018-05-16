@@ -150,4 +150,24 @@ public class Utils
         return ScreenW * ScreenW / ScreenH;
     }
 
+
+
+    /**
+     * 格式化 - 时长
+     *
+     * @param duration 毫秒
+     * @return
+     */
+    public static String duration(long duration) {
+        if (duration < 0) {
+            return "00:00";
+        }
+        int totalSeconds = (int) ((duration + 500) / 1000);
+        int seconds = totalSeconds % 60;
+        int minutes = (totalSeconds / 60) % 60;
+        int hours = totalSeconds / 3600;
+        return hours > 0 ? String.format("%02d:%02d:%02d", hours, minutes, seconds) : String
+                .format("%02d:%02d", minutes, seconds);
+    }
+
 }
