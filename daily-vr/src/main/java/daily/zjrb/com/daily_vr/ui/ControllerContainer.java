@@ -6,8 +6,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 
-import daily.zjrb.com.daily_vr.player.BaseController;
-
 /**
  * @author: lujialei
  * @date: 2018/5/4

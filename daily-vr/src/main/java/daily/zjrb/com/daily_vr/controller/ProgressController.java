@@ -1,4 +1,4 @@
-package daily.zjrb.com.daily_vr.player;
+package daily.zjrb.com.daily_vr.controller;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,7 +11,6 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -20,7 +19,7 @@ import com.utovr.player.UVMediaPlayer;
 
 import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.R;
-import daily.zjrb.com.daily_vr.Utils;
+import daily.zjrb.com.daily_vr.other.Utils;
 
 /**
  * @author: lujialei
@@ -64,6 +63,11 @@ public class ProgressController extends RelativeLayout {
             vController.setVisibility(VISIBLE);
             lController.setVisibility(GONE);
         }
+    }
+
+    public void hideAllController(){
+        lController.setVisibility(GONE);
+        vController.setVisibility(GONE);
     }
 
 

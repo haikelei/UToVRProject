@@ -1,29 +1,21 @@
-package daily.zjrb.com.daily_vr.player;
+package daily.zjrb.com.daily_vr.controller;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.aliya.uimode.factory.UiModeInflaterFactory;
-import com.google.android.exoplayer2.Format;
-import com.trs.tasdk.entity.ObjectType;
 import com.zjrb.core.common.glide.AppGlideOptions;
 import com.zjrb.core.common.glide.GlideApp;
 import com.zjrb.core.common.global.PH;
 
-import butterknife.ButterKnife;
-import cn.daily.news.analytics.Analytics;
 import daily.zjrb.com.daily_vr.R;
-import daily.zjrb.com.daily_vr.Utils;
-import daily.zjrb.com.daily_vr.VrSource;
+import daily.zjrb.com.daily_vr.other.Utils;
+import daily.zjrb.com.daily_vr.bean.VrSource;
 
 /**
  * @author: lujialei
@@ -39,6 +31,7 @@ public class PrepareController extends FrameLayout {
     public boolean hasShowedNetHint;
     private TextView tvDuration;
     private ImageView ivMask;
+    private View shadeView;
 
     public boolean getUIState() {
         return playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE;
@@ -54,6 +47,7 @@ public class PrepareController extends FrameLayout {
 
     public void showEnd() {
         playerRestart.setVisibility(VISIBLE);
+        shadeView.setVisibility(VISIBLE);
         mListener.onShowEndView();
     }
 
@@ -81,6 +75,7 @@ public class PrepareController extends FrameLayout {
 
     public void hindMaskImage(){
         ivMask.setVisibility(GONE);
+        shadeView.setVisibility(GONE);
     }
 
     private void initListener() {
@@ -97,6 +92,7 @@ public class PrepareController extends FrameLayout {
             @Override
             public void onClick(View v) {
                 playerRestart.setVisibility(GONE);
+                shadeView.setVisibility(GONE);
                 mListener.onRestartClicked();
             }
         });
@@ -108,6 +104,7 @@ public class PrepareController extends FrameLayout {
         playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
         playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
         tvDuration = (TextView) view.findViewById(R.id.tv_duration);
+        shadeView = findViewById(R.id.shade);
         if(source.getDuration()>0){
             tvDuration.setText(Utils.duration(source.getDuration() * 1000));
             tvDuration.setVisibility(VISIBLE);

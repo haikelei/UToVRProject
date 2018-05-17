@@ -1,6 +1,5 @@
-package daily.zjrb.com.daily_vr;
+package daily.zjrb.com.daily_vr.other;
 
-import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.view.View;
 import android.view.Window;
@@ -10,6 +9,8 @@ import com.utovr.player.UVEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import daily.zjrb.com.daily_vr.R;
 
 /**
  * Created by xilin on 2015/12/14.

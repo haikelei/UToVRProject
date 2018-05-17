@@ -1,4 +1,4 @@
-package daily.zjrb.com.daily_vr.player;
+package daily.zjrb.com.daily_vr.controller;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.database.ContentObserver;
 import android.media.AudioManager;
+import android.media.Image;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -35,7 +36,7 @@ import daily.zjrb.com.daily_vr.R;
 
 public class HintController extends RelativeLayout{
     private CheckBox playerVolumn;
-    private ImageView hintBufferProgress;
+    private LinearLayout hintBufferProgress;
     private Activity activity;
     private AnalyCallBack analyCallBack;
     private LinearLayout guideArea;
@@ -43,6 +44,7 @@ public class HintController extends RelativeLayout{
     int currentVolume;
     android.os.Handler mHandler = new android.os.Handler();
     private AudioManager audioManager;
+    private ImageView ivBuffering;
 
 
     public HintController(Activity activity, AnalyCallBack analyCallBack) {
@@ -100,9 +102,10 @@ public class HintController extends RelativeLayout{
     private void initView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_hint_controller,this,true);
         playerVolumn = (CheckBox) view.findViewById(R.id.player_ic_volume);
-        hintBufferProgress = (ImageView) view.findViewById(R.id.player_buffer_progress);
+        hintBufferProgress = (LinearLayout) view.findViewById(R.id.player_buffer_progress);
         guideArea = (LinearLayout) view.findViewById(R.id.ll_vr_guide);
-        ObjectAnimator anim = ObjectAnimator.ofFloat(hintBufferProgress, "rotation", 0f, 360f);
+        ivBuffering = (ImageView) view.findViewById(R.id.iv_buffering);
+        ObjectAnimator anim = ObjectAnimator.ofFloat(ivBuffering, "rotation", 0f, 360f);
         anim.setDuration(900);
         anim.setInterpolator(new LinearInterpolator());
         anim.setRepeatMode(ValueAnimator.RESTART);

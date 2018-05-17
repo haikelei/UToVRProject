@@ -1,4 +1,4 @@
-package daily.zjrb.com.daily_vr.player;
+package daily.zjrb.com.daily_vr.controller;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,11 +19,11 @@ import com.utovr.player.UVNetworkListenser;
 import com.zjrb.core.utils.NetUtils;
 import com.zjrb.core.utils.SettingManager;
 import daily.zjrb.com.daily_vr.AnalyCallBack;
-import daily.zjrb.com.daily_vr.CalcTime;
-import daily.zjrb.com.daily_vr.OrientationHandler;
+import daily.zjrb.com.daily_vr.other.CalcTime;
+import daily.zjrb.com.daily_vr.other.OrientationHandler;
 import daily.zjrb.com.daily_vr.R;
-import daily.zjrb.com.daily_vr.Utils;
-import daily.zjrb.com.daily_vr.VrSource;
+import daily.zjrb.com.daily_vr.other.Utils;
+import daily.zjrb.com.daily_vr.bean.VrSource;
 
 /**
  * @author: lujialei
@@ -109,15 +109,15 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
             @Override
             public void onRestartClicked() {
-                player.setToolbar(progressController,null,null);
-                player.setToolbarShow(false);
+                player.setToolbarShow(true);
                 player.replay();
                 check4G();
             }
 
             @Override
             public void onShowEndView() {
-                player.setToolbar(null,null,null);
+                progressController.hideAllController();
+                player.setToolbarShow(false);
             }
         });
 

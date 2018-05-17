@@ -7,13 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.utovr.player.UVMediaType;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import daily.zjrb.com.daily_vr.bean.VrSource;
 import daily.zjrb.com.daily_vr.player.VRManager;
 
 /**

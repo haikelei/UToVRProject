@@ -10,6 +10,11 @@
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+    <View
+        android:id="@+id/shade"
+        android:background="@color/vr_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></View>
 
     <!--播放-->
     <include layout="@layout/vr_layout_start_area"></include>

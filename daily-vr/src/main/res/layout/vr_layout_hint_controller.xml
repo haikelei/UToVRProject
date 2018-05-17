@@ -13,14 +13,31 @@
         android:visibility="gone"
         android:background="@drawable/vr_video_toolbar_tb_volume" />
 
-    <ImageView
-        android:id="@+id/player_buffer_progress"
-        android:src="@drawable/play_loading"
-        android:layout_centerInParent="true"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+    <LinearLayout
         android:visibility="gone"
-        />
+        android:gravity="center_horizontal"
+        android:layout_centerInParent="true"
+        android:id="@+id/player_buffer_progress"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_buffering"
+            android:src="@drawable/play_loading"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
+        <TextView
+            android:layout_marginTop="13dp"
+            android:text="加载中"
+            android:textSize="@dimen/ts_14sp"
+            android:textColor="#ffffff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:visibility="gone"

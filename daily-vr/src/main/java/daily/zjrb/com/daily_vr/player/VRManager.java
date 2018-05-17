@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.ContentObserver;
-import android.media.AudioManager;
 import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
@@ -14,12 +13,12 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.trs.tasdk.entity.Base;
 import com.utovr.player.UVMediaPlayer;
 import com.utovr.player.UVPlayerCallBack;
 
 import daily.zjrb.com.daily_vr.AnalyCallBack;
-import daily.zjrb.com.daily_vr.VrSource;
+import daily.zjrb.com.daily_vr.bean.VrSource;
+import daily.zjrb.com.daily_vr.controller.BaseController;
 
 /**
  * @author: lujialei

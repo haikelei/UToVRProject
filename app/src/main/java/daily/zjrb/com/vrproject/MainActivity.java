@@ -1,32 +1,14 @@
 package daily.zjrb.com.vrproject;
 
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
-import com.utovr.player.UVEventListener;
-import com.utovr.player.UVInfoListener;
-import com.utovr.player.UVMediaPlayer;
-import com.utovr.player.UVMediaType;
-import com.utovr.player.UVPlayerCallBack;
 import com.zjrb.core.common.base.BaseActivity;
 import com.zjrb.core.common.base.toolbar.TopBarFactory;
 import com.zjrb.core.common.base.toolbar.holder.DefaultTopBarHolder1;
-import com.zjrb.core.db.ThemeMode;
-import com.zjrb.core.utils.SettingManager;
-
-import daily.zjrb.com.daily_vr.Utils;
-import daily.zjrb.com.daily_vr.VideoController;
 
 public class MainActivity extends BaseActivity {
     int ui;

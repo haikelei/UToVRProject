@@ -1,4 +1,4 @@
-package daily.zjrb.com.daily_vr;
+package daily.zjrb.com.daily_vr.other;
 
 import android.app.Activity;
 import android.content.pm.ActivityInfo;
