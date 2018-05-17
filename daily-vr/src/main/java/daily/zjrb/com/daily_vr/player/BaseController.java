@@ -178,52 +178,6 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         });
 
 
-//        OrientationHelper orientationHelper = new OrientationHelper();
-//        orientationHelper.registerListener(parent.getContext(), new OrientationListener() {
-//            long checkOrientationTime = 0;
-//            @Override
-//            public void onOrientation(int orientation) {
-//                if(System.currentTimeMillis() - checkOrientationTime < 1000){//1秒内不做处理
-//                    return;
-//                }
-//                checkOrientationTime = System.currentTimeMillis();
-//
-//                if(mLastOrientation != orientation){//方向变化后
-//                    mLastOrientation = orientation;
-//                    switchFromUser = false;
-//                }
-//
-//                try {
-//                    //屏幕旋转是否开启 0未开启 1开启
-//                    screenchange = Settings.System.getInt(activity.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
-//                } catch (Settings.SettingNotFoundException e) {
-//                    e.printStackTrace();
-//                }
-//                if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
-//                    if(screenchange == 1){
-//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-//                        changeOrientation(true);
-//                    }
-//                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
-//                    if(screenchange == 1){
-//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-//                        changeOrientation(false);
-//                    }
-//                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
-//                    if(screenchange == 1){
-//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-//                        changeOrientation(true);
-//                    }
-//                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
-//                    if(screenchange == 1){
-//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-//                        changeOrientation(false);
-//                    }
-//
-//                }
-//            }
-//        });
-
         player.setToolVisibleListener(new ma() {
             @Override
             public void a(int i) {//0显示  8隐藏
@@ -389,6 +343,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 parent.setLayoutParams(lp);
             }
         }
+        progressController.switchLand(isLandscape);
 
     }
 

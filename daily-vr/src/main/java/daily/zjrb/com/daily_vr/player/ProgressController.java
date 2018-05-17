@@ -137,7 +137,6 @@ public class ProgressController extends RelativeLayout {
         playerScreen = (CheckBox) view.findViewById(R.id.player_l_play_screen);
         retract = (ImageView) view.findViewById(R.id.player_l_small_screen);
 
-
     }
 
 
