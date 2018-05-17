@@ -69,6 +69,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             player.setToolbar(progressController,null,null);
             player.setToolbarShow(false);
             prepareController.hindMaskImage();
+            mOrientationHandler.setCanSwitch(true);
         }else {
             prepareController.showStartView();
         }

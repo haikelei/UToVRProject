@@ -70,25 +70,21 @@ public class OrientationHandler {
                     if(screenchange == 1){
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
                         listener.onLandReverse();
-//                        changeOrientation(true);
                     }
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
                     if(screenchange == 1){
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-//                        changeOrientation(false);
                         listener.onVerticalReverse();
                     }
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
                     if(screenchange == 1){
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
                         listener.onLand();
-//                        changeOrientation(true);
                     }
                 }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
                     if(screenchange == 1){
                         activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                         listener.onVertical();
-//                        changeOrientation(false);
                     }
 
                 }
