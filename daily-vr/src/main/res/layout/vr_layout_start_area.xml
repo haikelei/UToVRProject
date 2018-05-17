@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:letterSpacing="0.03"
-                android:textColor="?attr/tc_ffffff"
+                android:textColor="?attr/vr_tc_duration"
                 android:textSize="11dp"
                 android:visibility="gone"
                 tools:text="00:00" />

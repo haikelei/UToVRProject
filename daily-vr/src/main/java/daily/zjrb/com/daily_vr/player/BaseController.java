@@ -1,67 +1,29 @@
 package daily.zjrb.com.daily_vr.player;
 
-import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
-import android.media.AudioManager;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.os.Handler;
-import android.os.Message;
-import android.provider.Settings;
-import android.support.v4.app.FragmentActivity;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.GestureDetector;
-import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import com.aliya.player.gravity.OrientationHelper;
-import com.aliya.player.gravity.OrientationListener;
 import com.utovr.ma;
 import com.utovr.player.UVEventListener;
 import com.utovr.player.UVInfoListener;
 import com.utovr.player.UVMediaPlayer;
-import com.utovr.player.UVMediaType;
 import com.utovr.player.UVNetworkListenser;
-import com.zjrb.core.utils.L;
 import com.zjrb.core.utils.NetUtils;
 import com.zjrb.core.utils.SettingManager;
-
-import butterknife.ButterKnife;
 import daily.zjrb.com.daily_vr.AnalyCallBack;
 import daily.zjrb.com.daily_vr.CalcTime;
+import daily.zjrb.com.daily_vr.OrientationHandler;
 import daily.zjrb.com.daily_vr.R;
 import daily.zjrb.com.daily_vr.Utils;
 import daily.zjrb.com.daily_vr.VrSource;
-import daily.zjrb.com.daily_vr.ui.ControllerContainer;
-
-import static android.content.Context.CONNECTIVITY_SERVICE;
 
 /**
  * @author: lujialei
@@ -78,17 +40,15 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     private boolean bufferResume = true;
 
     protected ViewGroup parent;
-    private int mLastOrientation = -100;//上一次的方向记录
-    private boolean switchFromUser;
     private boolean mCurrentIsLand;
     protected Activity activity;
-    private int screenchange;
     ProgressController progressController;
     HintController hintController;
     PrepareController prepareController;
     private ProgressBar bottomProgressBar;
     private AnalyCallBack mAnalyCallBack;
     private VrSource mVrSource;
+    private OrientationHandler mOrientationHandler;
 
     public BaseController(VrSource source,UVMediaPlayer player, Activity activity, ViewGroup parent, AnalyCallBack analyCallBack){
         super(activity);
@@ -161,6 +121,30 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         });
 
+        //屏幕旋转处理
+        mOrientationHandler = new OrientationHandler(new OrientationHandler.OnOrientationListener() {
+            @Override
+            public void onLandReverse() {
+                changeOrientation(true);
+            }
+
+            @Override
+            public void onVerticalReverse() {
+                changeOrientation(false);
+            }
+
+            @Override
+            public void onVertical() {
+                changeOrientation(false);
+            }
+
+            @Override
+            public void onLand() {
+                changeOrientation(true);
+            }
+        },activity);
+
+
         progressController.setOnProgressControllerListener(new ProgressController.OnProgressControllerListener() {
             @Override
             public void onChangeOrientation(boolean b) {
@@ -169,7 +153,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
             @Override
             public void onIsFromUserSwitch(boolean b) {
-                switchFromUser = b;
+                mOrientationHandler.setSwitchFromUser(b);
             }
         });
 
@@ -193,45 +177,52 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         });
 
-        OrientationHelper orientationHelper = new OrientationHelper();
-        orientationHelper.registerListener(parent.getContext(), new OrientationListener() {
-            @Override
-            public void onOrientation(int orientation) {
-                if(mLastOrientation != orientation){//方向变化后
-                    mLastOrientation = orientation;
-                    switchFromUser = false;
-                }
 
-                try {
-                    //屏幕旋转是否开启 0未开启 1开启
-                    screenchange = Settings.System.getInt(activity.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
-                } catch (Settings.SettingNotFoundException e) {
-                    e.printStackTrace();
-                }
-                if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-                        changeOrientation(true);
-                    }
-                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-                        changeOrientation(false);
-                    }
-                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                        changeOrientation(true);
-                    }
-                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
-                    if(screenchange == 1){
-                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-                        changeOrientation(false);
-                    }
-
-                }
-            }
-        });
+//        OrientationHelper orientationHelper = new OrientationHelper();
+//        orientationHelper.registerListener(parent.getContext(), new OrientationListener() {
+//            long checkOrientationTime = 0;
+//            @Override
+//            public void onOrientation(int orientation) {
+//                if(System.currentTimeMillis() - checkOrientationTime < 1000){//1秒内不做处理
+//                    return;
+//                }
+//                checkOrientationTime = System.currentTimeMillis();
+//
+//                if(mLastOrientation != orientation){//方向变化后
+//                    mLastOrientation = orientation;
+//                    switchFromUser = false;
+//                }
+//
+//                try {
+//                    //屏幕旋转是否开启 0未开启 1开启
+//                    screenchange = Settings.System.getInt(activity.getContentResolver(), Settings.System.ACCELEROMETER_ROTATION);
+//                } catch (Settings.SettingNotFoundException e) {
+//                    e.printStackTrace();
+//                }
+//                if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE && !switchFromUser){//横屏翻转
+//                    if(screenchange == 1){
+//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
+//                        changeOrientation(true);
+//                    }
+//                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT && !switchFromUser){//竖屏翻转
+//                    if(screenchange == 1){
+//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
+//                        changeOrientation(false);
+//                    }
+//                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE && !switchFromUser){//横屏
+//                    if(screenchange == 1){
+//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+//                        changeOrientation(true);
+//                    }
+//                }else if(orientation == ActivityInfo.SCREEN_ORIENTATION_PORTRAIT && !switchFromUser){//竖屏
+//                    if(screenchange == 1){
+//                        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+//                        changeOrientation(false);
+//                    }
+//
+//                }
+//            }
+//        });
 
         player.setToolVisibleListener(new ma() {
             @Override
@@ -255,11 +246,13 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     private void check4G() {
         if(NetUtils.isMobile() && prepareController.shoudPlay()){//用流量提醒的状态下点击播放 直接播放
             player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            mOrientationHandler.setCanSwitch(true);
             prepareController.hindMaskImage();
             return;
         }
         if(NetUtils.isWifi()){//wifi情况下点击就播放
             player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            mOrientationHandler.setCanSwitch(true);
             prepareController.hindMaskImage();
             return;
         }

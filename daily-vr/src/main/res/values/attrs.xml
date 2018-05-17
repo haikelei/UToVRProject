@@ -4,5 +4,6 @@
         <attr name="vr_play" format="reference"></attr>
         <attr name="vr_gyroscope" format="reference"></attr>
         <attr name="vr_screen" format="reference"></attr>
+        <attr name="vr_tc_duration" format="color|reference" />
     </declare-styleable>
 </resources>
