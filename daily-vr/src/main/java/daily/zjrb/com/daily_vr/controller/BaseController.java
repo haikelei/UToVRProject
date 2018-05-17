@@ -64,8 +64,10 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     }
 
     private void initPlayer() {
-        if (SettingManager.getInstance().isAutoPlayVideoWithWifi() && NetUtils.isWifi()){//自动播放
+        if (mVrSource.isAutoPlayWithWifi() && NetUtils.isWifi()){//自动播放
             player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            player.setToolbar(progressController,null,null);
+            player.setToolbarShow(false);
             prepareController.hindMaskImage();
         }else {
             prepareController.showStartView();
