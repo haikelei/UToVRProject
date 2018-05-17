@@ -17,7 +17,8 @@
         android:layout_height="match_parent"></View>
 
     <!--播放-->
-    <include layout="@layout/vr_layout_start_area"></include>
+    <include layout="@layout/vr_layout_start_area"
+        android:visibility="gone"></include>
 
     <!--重播-->
     <include layout="@layout/vr_layout_restart_area"
