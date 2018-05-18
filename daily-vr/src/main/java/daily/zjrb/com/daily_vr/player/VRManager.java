@@ -64,13 +64,6 @@ public class VRManager implements UVPlayerCallBack {
         realParent.setLayoutParams(params);
         rlParent.addView(realParent);
         mMediaplayer = new UVMediaPlayer(rlParent.getContext(), realParent,this);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-            }
-        },3000);
-
     }
 
     public UVMediaPlayer getPlayer(){
@@ -79,7 +72,6 @@ public class VRManager implements UVPlayerCallBack {
 
     @Override
     public void createEnv() {
-        Log.e("lujialei=====","createEnv");
         try
         {
             // 创建媒体视频播放器
