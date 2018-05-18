@@ -13,6 +13,8 @@ import android.util.Log;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.utovr.player.UVEventListener;
+import com.utovr.player.UVInfoListener;
 import com.utovr.player.UVMediaPlayer;
 import com.utovr.player.UVPlayerCallBack;
 
@@ -35,9 +37,13 @@ public class VRManager implements UVPlayerCallBack {
     private BroadcastReceiver networkChangeReceiver;
     private AnalyCallBack analyCallBack;
     private SettingsContentObserver settingsContentObserver;
+    VrSource source;
+    Activity activity;
 
     public VRManager(VrSource source,Activity activity, ViewGroup parent, AnalyCallBack analyCallBack) {
         rlParent = parent;
+        this.source = source;
+        this.activity = activity;
         this.analyCallBack = analyCallBack;
         initPlayerAndController(source,activity);
 
@@ -51,19 +57,20 @@ public class VRManager implements UVPlayerCallBack {
     }
 
 
-    private void initPlayerAndController(VrSource source,Activity activity) {
+    private void initPlayerAndController(final VrSource source, final Activity activity) {
         //添加播放器
         RelativeLayout realParent = new RelativeLayout(rlParent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         realParent.setLayoutParams(params);
         rlParent.addView(realParent);
         mMediaplayer = new UVMediaPlayer(rlParent.getContext(), realParent,this);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
 
-        //添加controller
-        mController = new BaseController(source,mMediaplayer, activity,rlParent,analyCallBack);
-        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
-        mController.setLayoutParams(params1);
-        rlParent.addView(mController);
+            }
+        },3000);
+
     }
 
     public UVMediaPlayer getPlayer(){
@@ -72,12 +79,60 @@ public class VRManager implements UVPlayerCallBack {
 
     @Override
     public void createEnv() {
+        Log.e("lujialei=====","createEnv");
         try
         {
             // 创建媒体视频播放器
             mMediaplayer.initPlayer();
-            mMediaplayer.setListener(mController);
-            mMediaplayer.setInfoListener(mController);
+            mMediaplayer.setListener(new UVEventListener() {
+                @Override
+                public void onStateChanged(int i) {
+                    if (mController != null){
+                        mController.onStateChanged(i);
+                    }
+                }
+
+                @Override
+                public void onError(Exception e, int i) {
+                    if (mController != null){
+                        mController.onError(e,i);
+                    }
+                }
+
+                @Override
+                public void onVideoSizeChanged(int i, int i1) {
+                    if (mController != null){
+                        mController.onVideoSizeChanged(i,i1);
+                    }
+                }
+            });
+            mMediaplayer.setInfoListener(new UVInfoListener() {
+                @Override
+                public void onBandwidthSample(int i, long l, long l1) {
+                    if (mController != null){
+                        mController.onBandwidthSample(i,l,l1);
+                    }
+                }
+
+                @Override
+                public void onLoadStarted() {
+                    if (mController != null){
+                        mController.onLoadStarted();
+                    }
+                }
+
+                @Override
+                public void onLoadCompleted() {
+                    if (mController != null){
+
+                    }
+                }
+            });
+            //添加controller
+            mController = new BaseController(source,mMediaplayer, activity,rlParent,analyCallBack);
+            RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
+            mController.setLayoutParams(params1);
+            rlParent.addView(mController);
             //如果是网络MP4，可调用 mCtrl.startCachePro();mCtrl.stopCachePro();
 
             //mMediaplayer.setSource(UVMediaType.UVMEDIA_TYPE_MP4, "/sdcard/wu.mp4");
@@ -90,7 +145,10 @@ public class VRManager implements UVPlayerCallBack {
 
     @Override
     public void updateProgress(long position) {
-        mController.updateCurrentPosition(position);
+        if(mController != null){
+            mController.updateCurrentPosition(position);
+        }
+
 
     }
 
@@ -100,7 +158,10 @@ public class VRManager implements UVPlayerCallBack {
         {
             return;
         }
-        mController.changeOrientation(isLandscape);
+        if(mController != null){
+            mController.changeOrientation(isLandscape);
+        }
+
     }
 
 
@@ -153,7 +214,9 @@ public class VRManager implements UVPlayerCallBack {
     public class NetworkChangeReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            mController.onNetWorkChanged();
+            if(mController != null){
+                mController.onNetWorkChanged();
+            }
         }
     }
 
@@ -180,7 +243,9 @@ public class VRManager implements UVPlayerCallBack {
         @Override
         public void onChange(boolean selfChange) {
             super.onChange(selfChange);
-            mController.volumnChanged();
+            if(mController != null){
+                mController.volumnChanged();
+            }
         }
 
 

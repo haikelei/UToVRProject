@@ -33,7 +33,7 @@ import daily.zjrb.com.daily_vr.bean.VrSource;
  */
 
 
-public class BaseController extends RelativeLayout implements UVEventListener, UVInfoListener {
+public class BaseController extends RelativeLayout{
 
     protected UVMediaPlayer player = null;
     protected CalcTime calcTime;
@@ -222,7 +222,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         }
     }
 
-    @Override
+
     public void onStateChanged(int playbackState) {
         {
             Log.i("utovr", "+++++++ playbackState:" + playbackState);
@@ -263,27 +263,22 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
 
     }
 
-    @Override
     public void onError(Exception e, int i) {
 
     }
 
-    @Override
     public void onVideoSizeChanged(int i, int i1) {
 
     }
 
-    @Override
     public void onBandwidthSample(int i, long l, long l1) {
 
     }
 
-    @Override
     public void onLoadStarted() {
 
     }
 
-    @Override
     public void onLoadCompleted() {
 
     }
