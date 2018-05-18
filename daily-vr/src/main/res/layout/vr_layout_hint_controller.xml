@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
-            android:src="@mipmap/vr_guide"
+            android:src="?attr/vr_guide"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
         <TextView

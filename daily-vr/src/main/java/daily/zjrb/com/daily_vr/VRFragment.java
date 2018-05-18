@@ -94,7 +94,7 @@ public class VRFragment extends Fragment {
 
             }
         };
-        VrSource source = new VrSource(UVMediaType.UVMEDIA_TYPE_M3U8,Path,100000,"",true);
+        VrSource source = new VrSource(UVMediaType.UVMEDIA_TYPE_M3U8,Path,100000,"",false);
         vrManager = new VRManager(source,getActivity(), rlParent,analyCallBack);
         vrManager.changeOrientation(false);
 
