@@ -369,4 +369,8 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
         return mCurrentIsLand;
     }
 
+    public ProgressController getProgressController(){
+        return progressController;
+    }
+
 }

@@ -245,6 +245,15 @@ public class ProgressController extends RelativeLayout {
         });
     }
 
+
+    public void onBackPress(){
+        mListener.onIsFromUserSwitch(true);
+        activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        mListener.onChangeOrientation(false);
+    }
+
+
+
     public void initPlay() {
         buttonPlayPause.setChecked(true);
         buttonLPlayPause.setChecked(true);
