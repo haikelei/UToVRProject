@@ -59,7 +59,6 @@ public class HintController extends RelativeLayout{
     public void volumeChanged() {
         AudioManager audioManager = (AudioManager) getContext().getSystemService(Context.AUDIO_SERVICE);
         currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
-        Log.e("lujialei","声音==="+currentVolume);
         if(currentVolume ==0){
             playerVolumn.setChecked(true);
         }else {

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
     private boolean bufferResume = true;
 
     protected ViewGroup parent;
+
     private boolean mCurrentIsLand;
     protected Activity activity;
     ProgressController progressController;
@@ -348,8 +350,8 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
             }
         }
         progressController.switchLand(isLandscape);
-
     }
+
 
     //播放前的网络变化监听
     public void onNetWorkChanged() {
@@ -361,6 +363,10 @@ public class BaseController extends RelativeLayout implements UVEventListener, U
                 prepareController.setNetHintText("已切换至wifi");
             }
         }
+    }
+
+    public boolean getCurrentIsLand() {
+        return mCurrentIsLand;
     }
 
 }
