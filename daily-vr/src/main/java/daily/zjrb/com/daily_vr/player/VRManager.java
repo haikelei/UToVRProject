@@ -140,8 +140,6 @@ public class VRManager implements UVPlayerCallBack {
         if(mController != null){
             mController.updateCurrentPosition(position);
         }
-
-
     }
 
     public void changeOrientation(boolean isLandscape)

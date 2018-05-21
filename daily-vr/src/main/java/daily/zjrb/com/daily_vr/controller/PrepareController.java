@@ -84,6 +84,7 @@ public class PrepareController extends FrameLayout {
             @Override
             public void onClick(View v) {
                 playerStart.setVisibility(GONE);
+                tvDuration.setVisibility(GONE);
                 mListener.onStartClicked();
             }
         });
@@ -119,6 +120,9 @@ public class PrepareController extends FrameLayout {
 
 
     public void setNetHintText(String text) {
+        if(playerRestart.getVisibility() == VISIBLE){
+            playerRestart.setVisibility(GONE);
+        }
         playerStart.setVisibility(VISIBLE);
         playerNetHint.setVisibility(VISIBLE);
         playerNetHint.setText(text);

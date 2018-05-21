@@ -315,7 +315,6 @@ public class BaseController extends RelativeLayout{
         @Override
         public void run() {
             progressController.updatePosition(player.getDuration(),position,bufferProgress,calcTime.formatDuration(),calcTime.formatPosition());
-            //bottom progress
             bottomProgressBar.setMax((int) player.getDuration());
             bottomProgressBar.setProgress(position);
         }
