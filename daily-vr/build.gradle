@@ -20,10 +20,6 @@ android {
         lintOptions {
             abortOnError false
         }
-
-        ndk {
-            abiFilters "armeabi","armeabi-v7a"
-        }
     }
 
     buildTypes {
