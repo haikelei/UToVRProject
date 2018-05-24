@@ -117,6 +117,7 @@ public class BaseController extends RelativeLayout{
             public void onRestartClicked() {
                 player.setToolbarShow(true);
                 player.replay();
+                mOrientationHandler.setCanSwitch(true);
                 check4G();
             }
 
@@ -124,6 +125,7 @@ public class BaseController extends RelativeLayout{
             public void onShowEndView() {
                 progressController.hideAllController();
                 player.setToolbarShow(false);
+                mOrientationHandler.setCanSwitch(false);
             }
         });
 
@@ -131,22 +133,23 @@ public class BaseController extends RelativeLayout{
         mOrientationHandler = new OrientationHandler(new OrientationHandler.OnOrientationListener() {
             @Override
             public void onLandReverse() {
-                changeOrientation(true);
+                    changeOrientation(true);
+
             }
 
             @Override
             public void onVerticalReverse() {
-                changeOrientation(false);
+                    changeOrientation(false);
             }
 
             @Override
             public void onVertical() {
-                changeOrientation(false);
+                    changeOrientation(false);
             }
 
             @Override
             public void onLand() {
-                changeOrientation(true);
+                    changeOrientation(true);
             }
         },activity);
 
@@ -189,6 +192,7 @@ public class BaseController extends RelativeLayout{
             public void a(int i) {//0显示  8隐藏
                 if (i == 0){
                     if(prepareController.getUIState()){
+                        progressController.hideAllController();
                         return;
                     }
                     progressController.switchLand(mCurrentIsLand);
@@ -343,7 +347,12 @@ public class BaseController extends RelativeLayout{
                 parent.setLayoutParams(lp);
             }
         }
-        progressController.switchLand(isLandscape);
+        if (prepareController.getUIState()){
+            progressController.hideAllController();
+        }else {
+            progressController.switchLand(isLandscape);
+        }
+
     }
 
 

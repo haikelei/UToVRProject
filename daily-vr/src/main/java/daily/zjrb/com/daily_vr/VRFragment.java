@@ -18,7 +18,7 @@ import daily.zjrb.com.daily_vr.player.VRManager;
 /**
  * @author: lujialei
  * @date: 2018/4/16
- * @describe:
+ * @describe:测试用
  */
 
 
