@@ -1,106 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_alignParentBottom="true"
     android:layout_height="48dp"
-    android:gravity="center_vertical"
+    android:layout_alignParentBottom="true"
     android:background="#b2000000"
-    android:orientation="horizontal">
-
-    <CheckBox
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="5dp"
-        android:id="@+id/player_l_play_pause"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:scaleType="center"
-        android:button="@null"
-        android:background="@drawable/vr_video_toolbar_tb_play"
-        />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <SeekBar
-            android:id="@+id/player_l_seek_bar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@null"
-            android:indeterminateOnly="false"
-            android:max="1000"
-            android:splitTrack="false"
-            android:maxHeight="1dp"
-            android:minHeight="1dp"
-            android:paddingEnd="6dp"
-            android:paddingStart="6dp"
-            android:progressDrawable="@drawable/vr_module_player_seek_bar_drawable"
-            android:thumb="@drawable/vr_module_player_seek_bar_thumb" />
-<LinearLayout
     android:orientation="horizontal"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:gravity="center_vertical"
+   >
 
-    <TextView
-        android:id="@+id/player_l_position"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
-        android:text="--:--"
-        android:textColor="#ffffff"
-        android:textSize="11sp" />
+        android:layout_weight="1">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=" / "
-        android:textColor="#878686"
-        android:textSize="11sp" />
+        <LinearLayout
+            android:id="@+id/ll_seekbar"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <CheckBox
+                android:id="@+id/player_l_play_pause"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:layout_marginLeft="11.5dp"
+                android:layout_marginRight="6.5dp"
+                android:background="@drawable/vr_video_toolbar_tb_play"
+                android:button="@null"
+                android:scaleType="center" />
+            <SeekBar
+                android:id="@+id/player_l_seek_bar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:indeterminateOnly="false"
+                android:max="1000"
+                android:maxHeight="2dp"
+                android:minHeight="2dp"
+                android:paddingEnd="6dp"
+                android:paddingStart="6dp"
+                android:paddingTop="1dp"
+                android:progressDrawable="@drawable/vr_module_player_seek_bar_drawable"
+                android:splitTrack="false"
+                android:thumb="@drawable/vr_module_player_seek_bar_thumb" />
 
-    <TextView
-        android:id="@+id/player_l_duration"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="--:--"
-        android:textColor="#878686"
-        android:textSize="11sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="35dp"
+            android:layout_below="@id/ll_seekbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/player_l_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--:--"
+                android:textColor="#ffffff"
+                android:textSize="11sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" / "
+                android:textColor="#878686"
+                android:textSize="11sp" />
+
+            <TextView
+                android:id="@+id/player_l_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--:--"
+                android:textColor="#878686"
+                android:textSize="11sp" />
 
 
-</LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
-    </LinearLayout>
+
+
+
+
 
     <CheckBox
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="5dp"
         android:id="@+id/player_l_play_gyro"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:scaleType="center"
-        android:button="@null"
+        android:layout_width="22.5dp"
+        android:layout_height="22.5dp"
+        android:layout_marginLeft="12dp"
         android:background="?attr/vr_gyroscope"
-        />
+        android:button="@null"
+        android:scaleType="center" />
 
     <CheckBox
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="5dp"
         android:id="@+id/player_l_play_screen"
-        android:layout_width="20dp"
-        android:layout_height="13.2dp"
-        android:scaleType="center"
-        android:button="@null"
+        android:layout_width="23.5dp"
+        android:layout_height="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="?attr/vr_screen"
-        />
+        android:button="@null"
+        android:scaleType="center" />
 
 
     <ImageView
+        android:layout_marginRight="10dp"
         android:id="@+id/player_l_small_screen"
-        android:layout_width="34dp"
-        android:layout_height="match_parent"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:scaleType="center"
-        android:src="@mipmap/vr_module_player_controls_retract" />
+        android:background="@mipmap/vr_module_player_controls_retract" />
 
 </LinearLayout>
 

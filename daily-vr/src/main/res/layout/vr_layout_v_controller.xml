@@ -9,11 +9,11 @@
     android:orientation="horizontal">
 
     <CheckBox
-        android:layout_marginLeft="7dp"
-        android:layout_marginRight="5dp"
+        android:layout_marginLeft="12.5dp"
+        android:layout_marginRight="9dp"
         android:id="@+id/player_play_pause"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
         android:scaleType="center"
         android:button="@null"
         android:background="@drawable/vr_video_toolbar_tb_play"
@@ -28,8 +28,8 @@
         android:indeterminateOnly="false"
         android:max="1000"
         android:splitTrack="false"
-        android:maxHeight="1dp"
-        android:minHeight="1dp"
+        android:maxHeight="2dp"
+        android:minHeight="2dp"
         android:paddingEnd="6dp"
         android:paddingStart="6dp"
         android:progressDrawable="@drawable/vr_module_player_seek_bar_drawable"
@@ -39,7 +39,7 @@
         android:id="@+id/player_position"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="8dp"
         android:text="--:--"
         android:textColor="#ffffff"
         android:textSize="11sp" />
@@ -60,9 +60,11 @@
         android:textSize="11sp" />
 
     <ImageView
+        android:layout_marginRight="11.5dp"
         android:id="@+id/player_full_screen"
-        android:layout_width="34dp"
-        android:layout_height="match_parent"
+        android:layout_marginLeft="4.5dp"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:scaleType="center"
         android:src="@mipmap/vr_module_player_controls_spread" />
 

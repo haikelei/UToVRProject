@@ -28,7 +28,7 @@ import daily.zjrb.com.daily_vr.other.Utils;
  */
 
 
-public class ProgressController extends RelativeLayout {
+public class ProgressController extends RelativeLayout implements SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
 
     private LinearLayout lController;
     private LinearLayout vController;
@@ -93,6 +93,7 @@ public class ProgressController extends RelativeLayout {
         return progressBar.getMax();
     }
 
+
     interface OnProgressControllerListener{
         void onChangeOrientation(boolean b);
         void onIsFromUserSwitch(boolean b);
@@ -143,55 +144,15 @@ public class ProgressController extends RelativeLayout {
 
     }
 
-
     private void initListener() {
 
         //进度条
-        progressBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                playerPosition.setText( Utils.formatTime(progress));
+        progressBar.setOnSeekBarChangeListener(this);
+        lProgressBar.setOnSeekBarChangeListener(this);
 
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-                player.cancelHideToolbar();
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-                player.hideToolbarLater();
-                int progress = seekBar.getProgress();
-                player.seekTo(progress);
-            }
-        });
         //暂停
-        buttonPlayPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    player.pause();
-                    analyCallBack.onPause();
-                }else {
-                    player.play();
-                    analyCallBack.onStart();
-                }
-            }
-        });
-
-        buttonLPlayPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    player.pause();
-                    analyCallBack.onPause();
-                }else {
-                    player.play();
-                    analyCallBack.onStart();
-                }
-            }
-        });
+        buttonPlayPause.setOnCheckedChangeListener(this);
+        buttonLPlayPause.setOnCheckedChangeListener(this);
 
         //陀螺仪
         playerGyro.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -257,5 +218,34 @@ public class ProgressController extends RelativeLayout {
     public void initPlay() {
         buttonPlayPause.setChecked(true);
         buttonLPlayPause.setChecked(true);
+    }
+
+    @Override
+    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+        playerPosition.setText( Utils.formatTime(progress));
+    }
+
+    @Override
+    public void onStartTrackingTouch(SeekBar seekBar) {
+        player.cancelHideToolbar();
+    }
+
+    @Override
+    public void onStopTrackingTouch(SeekBar seekBar) {
+        player.hideToolbarLater();
+        int progress = seekBar.getProgress();
+        player.seekTo(progress);
+    }
+
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if(isChecked){
+            player.pause();
+            analyCallBack.onPause();
+        }else {
+            player.play();
+            analyCallBack.onStart();
+        }
     }
 }
