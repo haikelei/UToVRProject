@@ -45,7 +45,7 @@ public class VRManager implements UVPlayerCallBack {
         this.source = source;
         this.activity = activity;
         this.analyCallBack = analyCallBack;
-        initPlayerAndController(source,activity);
+        initPlayerAndController();
 
         setBreoadcast();
         setVolumnListener();
@@ -57,7 +57,7 @@ public class VRManager implements UVPlayerCallBack {
     }
 
 
-    private void initPlayerAndController(final VrSource source, final Activity activity) {
+    private void initPlayerAndController() {
         //添加播放器
         RelativeLayout realParent = new RelativeLayout(rlParent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);

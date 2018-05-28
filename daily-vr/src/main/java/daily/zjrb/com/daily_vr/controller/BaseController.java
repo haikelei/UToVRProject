@@ -12,6 +12,9 @@ import android.view.WindowManager;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.aliya.player.Extra;
+import com.aliya.player.utils.Recorder;
 import com.utovr.ma;
 import com.utovr.player.UVEventListener;
 import com.utovr.player.UVInfoListener;
@@ -68,6 +71,10 @@ public class BaseController extends RelativeLayout{
     private void initPlayer() {
         if (mVrSource.isAutoPlayWithWifi() && NetUtils.isWifi()){//自动播放
             player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            int progress = Recorder.get().getCacheProgress(mVrSource.getPath());
+            if (progress != Recorder.NO_VALUE && progress > 0) {
+                player.seekTo(progress);
+            }
             player.setToolbar(progressController,null,null);
             player.setToolbarShow(false);
             prepareController.hindMaskImage();
@@ -210,12 +217,20 @@ public class BaseController extends RelativeLayout{
     private void check4G() {
         if(NetUtils.isMobile() && prepareController.shoudPlay()){//用流量提醒的状态下点击播放 直接播放
             player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            int progress = Recorder.get().getCacheProgress(mVrSource.getPath());
+            if (progress != Recorder.NO_VALUE && progress > 0) {
+                player.seekTo(progress);
+            }
             mOrientationHandler.setCanSwitch(true);
             prepareController.hindMaskImage();
             return;
         }
         if(NetUtils.isWifi()){//wifi情况下点击就播放
             player.setSource(mVrSource.getMediaType(),mVrSource.getPath());
+            int progress = Recorder.get().getCacheProgress(mVrSource.getPath());
+            if (progress != Recorder.NO_VALUE && progress > 0) {
+                player.seekTo(progress);
+            }
             mOrientationHandler.setCanSwitch(true);
             prepareController.hindMaskImage();
             return;
@@ -321,6 +336,8 @@ public class BaseController extends RelativeLayout{
             progressController.updatePosition(player.getDuration(),position,bufferProgress,calcTime.formatDuration(),calcTime.formatPosition());
             bottomProgressBar.setMax((int) player.getDuration());
             bottomProgressBar.setProgress(position);
+            Recorder.get()
+                    .putCacheProgress(mVrSource.getPath(),position);
         }
     }
 
