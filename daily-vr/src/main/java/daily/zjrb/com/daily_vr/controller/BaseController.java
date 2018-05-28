@@ -279,6 +279,7 @@ public class BaseController extends RelativeLayout{
     //播放结束
     private void showEndView() {
         prepareController.showEnd();
+        Recorder.get().removeCacheProgress(mVrSource.getPath());
 
     }
 

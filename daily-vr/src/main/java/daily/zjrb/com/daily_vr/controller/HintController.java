@@ -104,6 +104,7 @@ public class HintController extends RelativeLayout{
         hintBufferProgress = (LinearLayout) view.findViewById(R.id.player_buffer_progress);
         guideArea = (LinearLayout) view.findViewById(R.id.ll_vr_guide);
         ivBuffering = (ImageView) view.findViewById(R.id.iv_buffering);
+        volumeChanged();//初始化静音按钮
         ObjectAnimator anim = ObjectAnimator.ofFloat(ivBuffering, "rotation", 0f, 360f);
         anim.setDuration(900);
         anim.setInterpolator(new LinearInterpolator());
