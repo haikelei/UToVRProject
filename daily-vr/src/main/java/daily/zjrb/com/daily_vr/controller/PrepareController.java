@@ -48,7 +48,6 @@ public class PrepareController extends FrameLayout {
     public void showEnd() {
         playerRestart.setVisibility(VISIBLE);
         shadeView.setVisibility(VISIBLE);
-        mListener.onShowEndView();
     }
 
     public boolean isNetHintShowing() {
@@ -58,7 +57,6 @@ public class PrepareController extends FrameLayout {
     interface OnPrepareControllerListener{
         void onStartClicked();
         void onRestartClicked();
-        void onShowEndView();
     }
     private OnPrepareControllerListener mListener;
     public void setOnPrepareControllerListener(OnPrepareControllerListener mListener){

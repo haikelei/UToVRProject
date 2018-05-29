@@ -2,6 +2,7 @@ package daily.zjrb.com.daily_vr.controller;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -128,12 +129,6 @@ public class BaseController extends RelativeLayout{
                 check4G();
             }
 
-            @Override
-            public void onShowEndView() {
-                progressController.hideAllController();
-                player.setToolbarShow(false);
-                mOrientationHandler.setCanSwitch(false);
-            }
         });
 
         //屏幕旋转处理
@@ -280,6 +275,14 @@ public class BaseController extends RelativeLayout{
     private void showEndView() {
         prepareController.showEnd();
         Recorder.get().removeCacheProgress(mVrSource.getPath());
+        if (mCurrentIsLand){
+            changeOrientation(false);
+            activity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        }
+        progressController.hideAllController();
+        player.setToolbarShow(false);
+        mOrientationHandler.setCanSwitch(false);
+
 
     }
 
