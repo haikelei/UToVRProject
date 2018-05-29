@@ -46,7 +46,6 @@ public class VRManager implements UVPlayerCallBack {
         this.activity = activity;
         this.analyCallBack = analyCallBack;
         initPlayerAndController();
-
         setBreoadcast();
         setVolumnListener();
     }
