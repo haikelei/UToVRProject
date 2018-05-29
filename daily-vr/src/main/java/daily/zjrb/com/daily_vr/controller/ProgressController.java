@@ -28,7 +28,7 @@ import daily.zjrb.com.daily_vr.other.Utils;
  */
 
 
-public class ProgressController extends RelativeLayout implements SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
+public class ProgressController extends RelativeLayout implements SeekBar.OnSeekBarChangeListener{
 
     private LinearLayout lController;
     private LinearLayout vController;
@@ -151,8 +151,36 @@ public class ProgressController extends RelativeLayout implements SeekBar.OnSeek
         lProgressBar.setOnSeekBarChangeListener(this);
 
         //暂停
-        buttonPlayPause.setOnCheckedChangeListener(this);
-        buttonLPlayPause.setOnCheckedChangeListener(this);
+        buttonPlayPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonLPlayPause.isChecked() != isChecked){
+                    buttonLPlayPause.setChecked(isChecked);
+                }
+                if(isChecked){
+                    player.pause();
+                    analyCallBack.onPause();
+                }else {
+                    player.play();
+                    analyCallBack.onStart();
+                }
+            }
+        });
+        buttonLPlayPause.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (buttonPlayPause.isChecked() != isChecked){
+                    buttonPlayPause.setChecked(isChecked);
+                }
+                if(isChecked){
+                    player.pause();
+                    analyCallBack.onPause();
+                }else {
+                    player.play();
+                    analyCallBack.onStart();
+                }
+            }
+        });
 
         //陀螺仪
         playerGyro.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -238,14 +266,4 @@ public class ProgressController extends RelativeLayout implements SeekBar.OnSeek
     }
 
 
-    @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        if(isChecked){
-            player.pause();
-            analyCallBack.onPause();
-        }else {
-            player.play();
-            analyCallBack.onStart();
-        }
-    }
 }
