@@ -82,6 +82,7 @@ public class BaseController extends RelativeLayout{
             mOrientationHandler.setCanSwitch(true);
         }else {
             prepareController.showStartView();
+            mOrientationHandler.setCanSwitch(false);
         }
     }
 
@@ -282,8 +283,6 @@ public class BaseController extends RelativeLayout{
         progressController.hideAllController();
         player.setToolbarShow(false);
         mOrientationHandler.setCanSwitch(false);
-
-
     }
 
     public void onError(Exception e, int i) {
