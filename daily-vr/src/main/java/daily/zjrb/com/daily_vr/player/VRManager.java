@@ -10,6 +10,7 @@ import android.net.ConnectivityManager;
 import android.net.wifi.WifiManager;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
@@ -39,10 +40,12 @@ public class VRManager implements UVPlayerCallBack {
     private SettingsContentObserver settingsContentObserver;
     VrSource source;
     Activity activity;
+    private RelativeLayout realParent;
 
     public VRManager(VrSource source,Activity activity, ViewGroup parent, AnalyCallBack analyCallBack) {
         rlParent = parent;
         this.source = source;
+//        source.setPath("http://cache.utovr.com/201508270528174780.m3u8");
         this.activity = activity;
         this.analyCallBack = analyCallBack;
         initPlayerAndController();
@@ -58,12 +61,12 @@ public class VRManager implements UVPlayerCallBack {
 
     private void initPlayerAndController() {
         //添加播放器
-        RelativeLayout realParent = new RelativeLayout(rlParent.getContext());
-        mMediaplayer = new UVMediaPlayer(rlParent.getContext(), realParent,this);
+        realParent = new RelativeLayout(rlParent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         realParent.setLayoutParams(params);
         rlParent.removeAllViews();
         rlParent.addView(realParent);
+        mMediaplayer = new UVMediaPlayer(realParent.getContext(), realParent,VRManager.this);
 
     }
 
