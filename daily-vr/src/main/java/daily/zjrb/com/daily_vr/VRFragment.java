@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.utovr.player.UVMediaType;
+import com.zjrb.core.common.base.BaseFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -22,7 +23,7 @@ import daily.zjrb.com.daily_vr.player.VRManager;
  */
 
 
-public class VRFragment extends Fragment {
+public class VRFragment extends BaseFragment {
 
     Unbinder unbinder;
     private RelativeLayout rlParent = null;
@@ -94,7 +95,7 @@ public class VRFragment extends Fragment {
 
             }
         };
-        VrSource source = new VrSource(UVMediaType.UVMEDIA_TYPE_M3U8,Path,100000,"",false);
+        VrSource source = new VrSource(UVMediaType.UVMEDIA_TYPE_M3U8,Path,100000,"",true);
         vrManager = new VRManager(source,getActivity(), rlParent,analyCallBack);
         vrManager.changeOrientation(false);
 
