@@ -61,6 +61,7 @@ public class VRManager implements UVPlayerCallBack {
         RelativeLayout realParent = new RelativeLayout(rlParent.getContext());
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
         realParent.setLayoutParams(params);
+        rlParent.removeAllViews();
         rlParent.addView(realParent);
         mMediaplayer = new UVMediaPlayer(rlParent.getContext(), realParent,this);
     }

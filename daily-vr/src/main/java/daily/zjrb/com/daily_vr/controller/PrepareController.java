@@ -37,6 +37,10 @@ public class PrepareController extends FrameLayout {
         return playerStart.getVisibility() == VISIBLE || playerRestart.getVisibility() == VISIBLE;
     }
 
+    public boolean isRestartShowing(){
+        return  playerRestart.getVisibility() == VISIBLE;
+    }
+
     public void showStartView() {
         playerStart.setVisibility(VISIBLE);
     }
@@ -81,6 +85,9 @@ public class PrepareController extends FrameLayout {
         playerStart.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(playerNetHint.getVisibility() == VISIBLE && playerNetHint.getText().toString().equals("用流量播放")){
+                    hasShowedNetHint = true;
+                }
                 playerStart.setVisibility(GONE);
                 tvDuration.setVisibility(GONE);
                 mListener.onStartClicked();
@@ -119,15 +126,13 @@ public class PrepareController extends FrameLayout {
 
     public void setNetHintText(String text) {
         if(playerRestart.getVisibility() == VISIBLE){
-            playerRestart.setVisibility(GONE);
+            playerStart.setVisibility(GONE);
+            playerNetHint.setVisibility(GONE);
+        }else {
+            playerStart.setVisibility(VISIBLE);
+            playerNetHint.setVisibility(VISIBLE);
         }
-        playerStart.setVisibility(VISIBLE);
-        playerNetHint.setVisibility(VISIBLE);
         playerNetHint.setText(text);
-        if(text.equals("用流量播放")){
-            hasShowedNetHint = true;
-        }
     }
-
 
 }

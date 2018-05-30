@@ -233,7 +233,11 @@ public class BaseController extends RelativeLayout{
         }
         if(NetUtils.isMobile() && !prepareController.hasShowedNetHint){
             prepareController.setNetHintText("用流量播放");
+            player.setToolbarShow(false);
             return;
+        }
+        if (NetUtils.isMobile() && prepareController.hasShowedNetHint){
+            Toast.makeText(getContext(),"正在使用移动流量播放",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -376,7 +380,7 @@ public class BaseController extends RelativeLayout{
     }
 
 
-    //播放前的网络变化监听
+    //播放前和播放结束的网络变化监听
     public void onNetWorkChanged() {
         if(NetUtils.isMobile() && !player.isPlaying()){
             prepareController.setNetHintText("用流量播放");
