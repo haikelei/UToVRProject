@@ -67,7 +67,6 @@ public class VRManager implements UVPlayerCallBack {
         rlParent.removeAllViews();
         rlParent.addView(realParent);
         mMediaplayer = new UVMediaPlayer(realParent.getContext(), realParent,VRManager.this,180,0,96);
-
     }
 
     public UVMediaPlayer getPlayer(){
@@ -80,50 +79,8 @@ public class VRManager implements UVPlayerCallBack {
         {
             // 创建媒体视频播放器
             mMediaplayer.initPlayer();
-            mMediaplayer.setListener(new UVEventListener() {
-                @Override
-                public void onStateChanged(int i) {
-                    if (mController != null){
-                        mController.onStateChanged(i);
-                    }
-                }
-
-                @Override
-                public void onError(Exception e, int i) {
-                    if (mController != null){
-                        mController.onError(e,i);
-                    }
-                }
-
-                @Override
-                public void onVideoSizeChanged(int i, int i1) {
-                    if (mController != null){
-                        mController.onVideoSizeChanged(i,i1);
-                    }
-                }
-            });
-            mMediaplayer.setInfoListener(new UVInfoListener() {
-                @Override
-                public void onBandwidthSample(int i, long l, long l1) {
-                    if (mController != null){
-                        mController.onBandwidthSample(i,l,l1);
-                    }
-                }
-
-                @Override
-                public void onLoadStarted() {
-                    if (mController != null){
-                        mController.onLoadStarted();
-                    }
-                }
-
-                @Override
-                public void onLoadCompleted() {
-                    if (mController != null){
-
-                    }
-                }
-            });
+            mMediaplayer.setListener(new MyUVEventListener());
+            mMediaplayer.setInfoListener(new MyUVInfoListener());
             //添加controller
             mController = new BaseController(source,mMediaplayer, activity,rlParent,analyCallBack);
             RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,RelativeLayout.LayoutParams.MATCH_PARENT);
@@ -241,8 +198,52 @@ public class VRManager implements UVPlayerCallBack {
                 mController.volumnChanged();
             }
         }
+    }
 
+    public class MyUVInfoListener implements UVInfoListener{
+        @Override
+        public void onBandwidthSample(int i, long l, long l1) {
+            if (mController != null){
+                mController.onBandwidthSample(i,l,l1);
+            }
+        }
 
+        @Override
+        public void onLoadStarted() {
+            if (mController != null){
+                mController.onLoadStarted();
+            }
+        }
+
+        @Override
+        public void onLoadCompleted() {
+            if (mController != null){
+
+            }
+        }
+    }
+
+    public class MyUVEventListener implements UVEventListener {
+        @Override
+        public void onStateChanged(int i) {
+            if (mController != null){
+                mController.onStateChanged(i);
+            }
+        }
+
+        @Override
+        public void onError(Exception e, int i) {
+            if (mController != null){
+                mController.onError(e,i);
+            }
+        }
+
+        @Override
+        public void onVideoSizeChanged(int i, int i1) {
+            if (mController != null){
+                mController.onVideoSizeChanged(i,i1);
+            }
+        }
     }
 
 
