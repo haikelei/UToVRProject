@@ -25,7 +25,7 @@ import daily.zjrb.com.daily_vr.bean.VrSource;
 
 
 public class PrepareController extends FrameLayout {
-    private TextView playerNetHint;
+    private TextView tvNetHint;
     private LinearLayout playerStart;
     private LinearLayout playerRestart;
     public boolean hasShowedNetHint;
@@ -46,7 +46,7 @@ public class PrepareController extends FrameLayout {
     }
 
     public boolean shoudPlay() {
-        return playerNetHint.getVisibility() == VISIBLE && (playerNetHint.getText().toString().equals("用流量播放") || playerNetHint.getText().toString().equals("已切换至wifi"));
+        return tvNetHint.getVisibility() == VISIBLE && (tvNetHint.getText().toString().equals("用流量播放") || tvNetHint.getText().toString().equals("已切换至wifi"));
     }
 
     public void showEnd() {
@@ -55,7 +55,7 @@ public class PrepareController extends FrameLayout {
     }
 
     public boolean isNetHintShowing() {
-        return playerNetHint.getVisibility() == VISIBLE;
+        return tvNetHint.getVisibility() == VISIBLE;
     }
 
     interface OnPrepareControllerListener{
@@ -85,7 +85,7 @@ public class PrepareController extends FrameLayout {
         playerStart.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(playerNetHint.getVisibility() == VISIBLE && playerNetHint.getText().toString().equals("用流量播放")){
+                if(tvNetHint.getVisibility() == VISIBLE && tvNetHint.getText().toString().equals("用流量播放")){
                     hasShowedNetHint = true;
                 }
                 playerStart.setVisibility(GONE);
@@ -107,7 +107,7 @@ public class PrepareController extends FrameLayout {
     private void initView(Context context,VrSource source) {
         View view = LayoutInflater.from(context).inflate(R.layout.vr_layout_prepare_controller,this,true);
         playerStart = (LinearLayout) view.findViewById(R.id.ll_start);
-        playerNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
+        tvNetHint = (TextView) view.findViewById(R.id.tv_net_hint);
         playerRestart = (LinearLayout) view.findViewById(R.id.ll_restart);
         tvDuration = (TextView) view.findViewById(R.id.tv_duration);
         shadeView = findViewById(R.id.shade);
@@ -125,14 +125,15 @@ public class PrepareController extends FrameLayout {
 
 
     public void setNetHintText(String text) {
+        tvDuration.setVisibility(GONE);
         if(playerRestart.getVisibility() == VISIBLE){
             playerStart.setVisibility(GONE);
-            playerNetHint.setVisibility(GONE);
+            tvNetHint.setVisibility(GONE);
         }else {
             playerStart.setVisibility(VISIBLE);
-            playerNetHint.setVisibility(VISIBLE);
+            tvNetHint.setVisibility(VISIBLE);
         }
-        playerNetHint.setText(text);
+        tvNetHint.setText(text);
     }
 
 }
