@@ -263,6 +263,10 @@ public class ProgressController extends RelativeLayout implements SeekBar.OnSeek
         player.hideToolbarLater();
         int progress = seekBar.getProgress();
         player.seekTo(progress);
+        if (buttonPlayPause.isChecked() || buttonLPlayPause.isChecked()){
+            buttonPlayPause.setChecked(false);
+            buttonLPlayPause.setChecked(false);
+        }
     }
 
 
