@@ -136,8 +136,7 @@ public class VRManager implements UVPlayerCallBack {
     {
         if (mMediaplayer != null)
         {
-            mMediaplayer.release();
-            mMediaplayer = null;
+            mMediaplayer.stop();
         }
         rlParent.getContext().unregisterReceiver(networkChangeReceiver);
         rlParent.getContext().getContentResolver().unregisterContentObserver(settingsContentObserver);
