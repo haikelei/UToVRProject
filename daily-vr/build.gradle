@@ -38,5 +38,5 @@ dependencies {
     }
     compile 'com.jakewharton:butterknife:8.6.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
-    compile 'com.aliya:android-player:0.2.2'
+    compile 'cn.daily.android:android-player:0.2.27-SNAPSHOT'
 }
