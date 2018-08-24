@@ -14,8 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.aliya.player.Extra;
-import com.aliya.player.utils.Recorder;
+import com.aliya.dailyplayer.utils.Recorder;
 import com.utovr.ma;
 import com.utovr.player.UVEventListener;
 import com.utovr.player.UVInfoListener;

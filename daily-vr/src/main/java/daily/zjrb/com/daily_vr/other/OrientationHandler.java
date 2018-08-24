@@ -4,8 +4,9 @@ import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.provider.Settings;
 
-import com.aliya.player.gravity.OrientationHelper;
-import com.aliya.player.gravity.OrientationListener;
+import com.aliya.dailyplayer.gravity.OrientationHelper;
+import com.aliya.dailyplayer.gravity.OrientationListener;
+
 
 /**
  * @author: lujialei
