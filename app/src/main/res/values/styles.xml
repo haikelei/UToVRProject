@@ -18,7 +18,7 @@
     </style>
 
     <style name="NightAppTheme" parent="CoreThemeNight.Base">
-        <item name="vr_play">@mipmap/vr_module_detail_ic_play_start</item>
+        <item name="vr_play">@mipmap/vr_module_ic_play_start</item>
         <item name="vr_gyroscope">@drawable/vr_video_toolbar_tb_gyro_night</item>
         <item name="vr_screen">@drawable/vr_video_toolbar_tb_screen_night</item>
         <item name="vr_tc_duration">#cccbcb</item>
