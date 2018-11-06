@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="VRAppTheme">
-        <attr name="vr_play" format="reference"></attr>
-        <attr name="vr_gyroscope" format="reference"></attr>
-        <attr name="vr_screen" format="reference"></attr>
-        <attr name="vr_tc_duration" format="color|reference" />
-        <attr name="vr_bg_start" format="reference" />
-        <attr name="vr_bg_restart" format="reference" />
-        <attr name="vr_guide" format="reference" />
+
     </declare-styleable>
 </resources>

@@ -4,5 +4,5 @@
     <item android:state_checked="true"
         android:drawable="@drawable/gyroscope_btn_on" /> <!-- 如果是true，运行时显示的是 android:textOn 的值 -->
     <item android:state_checked="false" 
-        android:drawable="@drawable/gyroscope_btn_off_night" /> <!-- 如果是false，运行是显示的是 android:textOff 的值 -->
+        android:drawable="@drawable/gyroscope_btn_off" /> <!-- 如果是false，运行是显示的是 android:textOff 的值 -->
 </selector>

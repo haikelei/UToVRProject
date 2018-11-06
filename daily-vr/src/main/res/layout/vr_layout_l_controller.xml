@@ -90,7 +90,7 @@
         android:layout_width="22.5dp"
         android:layout_height="22.5dp"
         android:layout_marginLeft="12dp"
-        android:background="?attr/vr_gyroscope"
+        android:background="@drawable/vr_video_toolbar_tb_gyro"
         android:button="@null"
         android:scaleType="center" />
 
@@ -100,7 +100,7 @@
         android:layout_height="15dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:background="?attr/vr_screen"
+        android:background="@drawable/vr_video_toolbar_tb_screen"
         android:button="@null"
         android:scaleType="center" />
 
