@@ -8,23 +8,23 @@
         <item name="colorAccent">@color/colorAccent</item>
 
 
-        <item name="vr_play">@mipmap/vr_module_detail_ic_play_start_red</item>
-        <item name="vr_gyroscope">@drawable/vr_video_toolbar_tb_gyro</item>
-        <item name="vr_screen">@drawable/vr_video_toolbar_tb_screen</item>
-        <item name="vr_tc_duration">@color/tc_f44b50</item>
-        <item name="vr_bg_start">@drawable/vr_module_video_bg_oval_7f000000</item>
-        <item name="vr_bg_restart">@mipmap/vr_restart</item>
-        <item name="vr_guide">@mipmap/vr_guide</item>
+        <!--<item name="vr_play">@mipmap/vr_module_detail_ic_play_start_red</item>-->
+        <!--<item name="vr_gyroscope">@drawable/vr_video_toolbar_tb_gyro</item>-->
+        <!--<item name="vr_screen">@drawable/vr_video_toolbar_tb_screen</item>-->
+        <!--<item name="vr_tc_duration">@color/tc_f44b50</item>-->
+        <!--<item name="vr_bg_start">@drawable/vr_module_video_bg_oval_7f000000</item>-->
+        <!--<item name="vr_bg_restart">@mipmap/vr_restart</item>-->
+        <!--<item name="vr_guide">@mipmap/vr_guide</item>-->
     </style>
 
     <style name="NightAppTheme" parent="CoreThemeNight.Base">
-        <item name="vr_play">@mipmap/vr_module_ic_play_start</item>
-        <item name="vr_gyroscope">@drawable/vr_video_toolbar_tb_gyro_night</item>
-        <item name="vr_screen">@drawable/vr_video_toolbar_tb_screen_night</item>
-        <item name="vr_tc_duration">#cccbcb</item>
-        <item name="vr_bg_start">@drawable/vr_module_video_bg_oval_80000000</item>
-        <item name="vr_guide">@mipmap/vr_guide_night</item>
-        <item name="vr_bg_restart">@mipmap/vr_restart_night</item>
+        <!--<item name="vr_play">@mipmap/vr_module_ic_play_start</item>-->
+        <!--<item name="vr_gyroscope">@drawable/vr_video_toolbar_tb_gyro_night</item>-->
+        <!--<item name="vr_screen">@drawable/vr_video_toolbar_tb_screen_night</item>-->
+        <!--<item name="vr_tc_duration">#cccbcb</item>-->
+        <!--<item name="vr_bg_start">@drawable/vr_module_video_bg_oval_80000000</item>-->
+        <!--<item name="vr_guide">@mipmap/vr_guide_night</item>-->
+        <!--<item name="vr_bg_restart">@mipmap/vr_restart_night</item>-->
     </style>
 
 </resources>
