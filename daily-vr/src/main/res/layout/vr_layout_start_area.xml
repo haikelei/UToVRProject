@@ -14,7 +14,7 @@
         <LinearLayout
             android:layout_width="58dp"
             android:layout_height="58dp"
-            android:background="?attr/vr_bg_start"
+            android:background="@drawable/vr_module_video_bg_oval_7f000000"
             android:foreground="?attr/actionBarItemBackground"
             android:gravity="center"
             android:orientation="vertical">
@@ -22,8 +22,8 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="?attr/vr_play"
-                app:iv_maskColor="@color/vr_module_detail_tc_white_night" />
+                android:src="@mipmap/vr_module_ic_play_start"
+                />
 
             <TextView
                 android:id="@+id/tv_duration"
@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="2dp"
                 android:letterSpacing="0.03"
-                android:textColor="?attr/vr_tc_duration"
+                android:textColor="@color/_f44b50"
                 android:textSize="11dp"
                 android:visibility="gone"
                 tools:text="00:00" />
@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="2dp"
             android:letterSpacing="0.03"
-            android:textColor="?attr/tc_ffffff"
+            android:textColor="@color/_ffffff"
             android:textSize="11dp"
             android:visibility="gone"
             />

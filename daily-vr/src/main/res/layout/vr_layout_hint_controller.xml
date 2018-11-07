@@ -32,7 +32,7 @@
             android:layout_marginTop="13dp"
             android:text="加载中"
             android:textSize="@dimen/ts_14sp"
-            android:textColor="?attr/tc_ffffff"
+            android:textColor="@color/_ffffff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -57,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="360度滑动看看"
-            android:textColor="?attr/tc_ffffff"
+            android:textColor="@color/_ffffff"
 
             />
 

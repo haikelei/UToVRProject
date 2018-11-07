@@ -23,8 +23,8 @@ public class MyApp extends Application {
         UIUtils.init(this);
         AppUtils.setChannel("hah");
         SettingManager.init(this);
-        ThemeMode.initTheme(R.style.AppTheme, R.style.NightAppTheme);
-        UiModeManager.init(this, R.styleable.SupportUiMode);
+//        ThemeMode.initTheme(R.style.AppTheme, R.style.NightAppTheme);
+        UiModeManager.init(this, null);
         BaseInit.init(this,"bianfeng");
         setTheme(ThemeMode.isNightMode() ? R.style.NightAppTheme : R.style.AppTheme);
     }
